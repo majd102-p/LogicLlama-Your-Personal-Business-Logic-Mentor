@@ -7,16 +7,16 @@
 
 # Vision
 
-LogicLlama is not a traditional vulnerability scanner.
-It is not a wrapper around a language model.
+LogicLlama is not a traditional vulnerability scanner.  
+It is not a wrapper around a language model.  
 It is not a payload recommendation chatbot.
 
 LogicLlama is an **Offensive Security Reasoning Engine** focused on one of the hardest unsolved domains in application security:
 
 ## Business Logic Vulnerabilities
 
-Traditional tooling operates at the request level.
-LogicLlama operates at the **workflow level**.
+Traditional tooling operates at the request level.  
+LogicLlama operates at the workflow level.
 
 Instead of asking:
 
@@ -34,57 +34,56 @@ The platform models applications as:
 - Temporal workflows
 - Causal dependency chains
 
-This creates a fundamentally different approach to offensive security reasoning.
-
 ---
 
-# Why LogicLlama Exists
+# The Paradigm Shift
 
-Business logic flaws remain among the most dangerous and least understood classes of vulnerabilities because:
+Traditional security scanners focus on:
 
-- Automated scanners cannot infer business intent.
-- Traditional fuzzing lacks contextual reasoning.
-- Static payload testing fails against workflow-based exploits.
-- Existing AI systems hallucinate attack paths without structured reasoning.
-- Sensitive workflows cannot safely be uploaded to cloud-based LLMs.
+- Static payloads
+- Signature matching
+- Isolated endpoint analysis
+- Single-request testing
 
-LogicLlama addresses this by combining:
+Business logic vulnerabilities are fundamentally different.
 
-- Local AI execution
-- Graph-native reasoning
-- Event-driven state analysis
-- Hypothesis-driven traversal
-- Causal evidence tracking
-- Retrieval-Augmented Security Knowledge
+They are:
 
-All running fully offline.
+- Workflow abuses
+- State machine violations
+- Economic manipulation paths
+- Temporal inconsistencies
+- Trust-boundary failures
+
+LogicLlama transforms offensive security from payload execution into reasoning-driven workflow intelligence.
 
 ---
 
 # Core Philosophy
 
-LogicLlama treats applications as living systems.
+Applications are not collections of endpoints.
 
-The engine continuously:
+They are:
+
+- Stateful systems
+- Workflow engines
+- Economic environments
+- Permission graphs
+- Temporal processes
+
+LogicLlama continuously:
 
 1. Reconstructs workflows
-2. Models intended state transitions
-3. Generates exploitation hypotheses
-4. Correlates runtime signals
-5. Adjusts confidence dynamically
-6. Traverses alternative attack branches
-7. Builds explainable causal evidence graphs
-
-This enables reasoning beyond:
-
-- Payload injection
-- Static endpoint scanning
-- Regex-based anomaly detection
-- Single-request analysis
+2. Maps state transitions
+3. Generates attack hypotheses
+4. Correlates behavioral signals
+5. Dynamically adjusts confidence
+6. Traverses attack branches
+7. Builds explainable evidence graphs
 
 ---
 
-# Intelligence Architecture
+# Core Architecture
 
 ```mermaid
 flowchart TB
@@ -139,7 +138,7 @@ flowchart TB
     Decision --> Signals
     Signals --> State
     State --> Evidence
-    Evidence --> Hypothesis
+   Evidence --> Hypothesis
 
     Decision --> HTTP
     Decision --> Logic
@@ -162,7 +161,7 @@ flowchart TB
 
 ---
 
-# Core Engines
+# Intelligence Framework
 
 ## Adaptive Planning Engine
 
@@ -171,32 +170,30 @@ Responsible for autonomous traversal and execution orchestration.
 Capabilities:
 
 - Dynamic attack path generation
-- Priority-based branch scheduling
-- Context-aware execution planning
+- Multi-branch exploration
+- Context-aware execution
 - Runtime graph traversal
-- Failure recovery and rollback
-
-The planner continuously recalculates the next best action based on:
-
-- Signal confidence
-- Historical outcomes
-- Workflow state transitions
-- Resource constraints
-- Exploitation probability
+- Failure recovery
+- Priority scheduling
 
 ---
 
 ## Decision Engine
 
-The Decision Engine acts as the central reasoning core.
+The Decision Engine ranks:
 
-It ranks tools, attack paths, and hypotheses using:
+- Attack paths
+- Tools
+- Hypotheses
+- Exploitation branches
+
+Using:
 
 - Weighted rule systems
 - Confidence scoring
-- Historical success/failure learning
-- Contextual memory bias
-- Adaptive scoring formulas
+- Historical success/failure memory
+- Adaptive scoring models
+- Context-aware prioritization
 
 ### Decision Formula
 
@@ -209,110 +206,92 @@ base_score
 - historical_failure_penalty
 ```
 
-The engine supports:
-
-- Min-max normalization
-- Confidence-aware pruning
-- Multi-branch prioritization
-- Explainable ranking outputs
-
 ---
 
 ## Signal Correlation Engine
 
-Business logic flaws rarely reveal themselves through a single response.
+Business logic flaws rarely reveal themselves through a single request.
 
-The Signal Engine correlates multiple weak indicators into meaningful exploit confidence.
+LogicLlama correlates weak signals into high-confidence reasoning.
 
 Examples:
 
-- Response length differentials
-- Timing anomalies
+- Response length anomalies
+- Timing inconsistencies
 - Duplicate transaction states
-- Unauthorized state transitions
-- Unexpected workflow success
-- Parallel execution inconsistencies
-
-Signals influence:
-
-- Hypothesis confidence
-- Branch traversal
-- Vulnerability scoring
-- Attack escalation
+- Unauthorized transitions
+- Workflow desynchronization
+- Parallel execution anomalies
 
 ---
 
 ## State Machine Engine
 
-The platform reconstructs workflows into explicit state models.
+Applications are reconstructed into explicit workflow states.
 
 LogicLlama identifies:
 
-- Expected transitions
-- Forbidden transitions
+- Illegal state transitions
+- Workflow bypasses
 - Missing validations
-- Sequence bypasses
-- Temporal inconsistencies
+- Broken sequencing
+- Trust violations
 
-The engine understands workflows as:
-
-```text
-State A → State B → State C
-```
-
-and detects when:
+Example:
 
 ```text
-State A → State C
-```
+Expected:
+Cart → Checkout → Payment → Confirmation
 
-is improperly allowed.
+Observed:
+Cart → Confirmation
+```
 
 ---
 
 ## Evidence Graph Engine
 
-Unlike traditional scanners, LogicLlama stores reasoning chains.
+LogicLlama stores not only findings, but reasoning chains.
 
-Every hypothesis, signal, transition, and decision becomes part of a causal graph.
+Every:
+
+- Signal
+- Decision
+- Transition
+- Hypothesis
+- Validation step
+
+becomes part of a causal evidence graph.
 
 This enables:
 
-- Explainable AI security reasoning
+- Explainable AI reasoning
 - Replayable sessions
 - Attack path visualization
-- Debugging of AI decisions
-- Future reinforcement learning
-
-Stored in Neo4j as:
-
-- Workflow nodes
-- Vulnerability nodes
-- Signal nodes
-- State edges
-- Causal relationships
+- Security decision auditing
+- Reinforcement learning foundations
 
 ---
 
-# Security Analysis Layer
+# Offensive Analysis Modules
 
 ## HTTP Workflow Analyzer
 
 Parses:
 
 - Raw HTTP requests
-- Proxy histories
 - Burp Suite exports
-- Multi-step flows
+- Proxy histories
 - Session transitions
+- Multi-step workflows
 
 Extracts:
 
 - Parameters
 - Tokens
-- State indicators
-- Role context
-- Temporal relationships
+- Roles
+- Temporal relations
+- Workflow dependencies
 
 ---
 
@@ -323,135 +302,114 @@ Transforms workflows into semantic logic graphs.
 Detects:
 
 - Workflow abuse
-- Reward manipulation
-- Missing validation
-- Broken assumptions
-- Economic exploit paths
+- Validation gaps
+- Economic manipulation
+- State inconsistencies
+- Trust-boundary violations
 
 ---
 
 ## Concurrency Analyzer
 
-Focused on race conditions and temporal abuse.
+Focused on temporal vulnerabilities:
 
-Capabilities:
+- Race conditions
+- Double-spend scenarios
+- Reward duplication
+- Eventual consistency flaws
+- Multi-request exploitation
+
+Supports:
 
 - Parallel request simulation
-- Race window detection
-- Single-action duplication analysis
-- Eventual consistency modeling
+- Race window analysis
 - Temporal ordering validation
-
-Targets:
-
-- Coupon reuse
-- Balance inflation
-- Double spending
-- Vote duplication
-- Reward amplification
 
 ---
 
 ## Access Control Analyzer
 
-Maps relationships between:
+Maps:
 
 - Roles
 - Resources
-- State ownership
-- Permission inheritance
-- Workflow privileges
+- Ownership boundaries
+- Session relationships
+- Privilege inheritance
 
-Specialized for:
+Targets:
 
 - IDOR
 - Cross-role escalation
 - Workflow authorization bypass
-- Trust-boundary violations
+- Broken access control
 
 ---
 
-# Knowledge & Learning Layer
+# Knowledge & Ontology Layer
 
 ## RAG Retrieval Engine
 
-Provides contextual retrieval over:
+Provides contextual intelligence from:
 
-- PortSwigger labs
+- PortSwigger Labs
 - OWASP BLA
+- Public writeups
 - CVEs
-- Writeups
-- Internal case intelligence
-- User-imported research
+- Internal research
+- User-imported cases
 
 Features:
 
-- Semantic chunking
-- Similarity search
-- CWE-linked retrieval
+- Semantic retrieval
+- CWE-linked search
 - Workflow-aware ranking
+- Similarity clustering
 
 ---
 
 ## Business Logic Ontology
 
-The ontology layer creates a graph-native representation of logic vulnerabilities.
+LogicLlama models vulnerabilities as traversable graph structures.
 
-Examples:
+Example:
 
 ```text
 Race Condition
     ↳ Economic Abuse
         ↳ Coupon Duplication
-            ↳ Reward Inflation
+            ↳ Balance Inflation
 ```
 
-This allows:
+This enables:
 
 - Cross-pattern reasoning
-- Semantic vulnerability traversal
-- Structural exploit discovery
-- Knowledge clustering
+- Semantic exploit discovery
+- Structural vulnerability mapping
+- Knowledge graph traversal
 
 ---
 
-# AI Stack
+# Local AI Stack
 
-## Fully Local AI Execution
+LogicLlama is fully offline.
 
-LogicLlama is privacy-first.
+No sensitive workflows leave the machine.
 
-All components run offline:
+## AI Components
 
 - Llama 3.x via Ollama
 - Local embeddings
 - Local vector search
-- Local workflow analysis
+- Local reasoning pipelines
+- Structured rule engines
 
-No HTTP requests or internal workflows are exposed externally.
-
----
-
-## Structured AI Reasoning
-
-The platform avoids raw LLM execution for critical logic.
-
-Instead, it combines:
-
-- Deterministic rule engines
-- Structured DSL execution
-- Typed schemas
-- Confidence scoring
-- Graph validation
-
-The LLM assists reasoning.
-It does not control execution blindly.
+The LLM assists reasoning.  
+It does not blindly control execution.
 
 ---
 
 # Temporal & Economic Intelligence
-
-LogicLlama extends beyond traditional web security.
 
 ## Temporal Reasoning
 
@@ -461,7 +419,7 @@ Models:
 - Race windows
 - Delayed consistency
 - Async state propagation
-- Multi-node synchronization flaws
+- Synchronization flaws
 
 ---
 
@@ -469,19 +427,12 @@ Models:
 
 Tracks:
 
-- Incentive abuse
-- Reward duplication
-- Balance inflation
+- Reward abuse
 - Refund amplification
-- Token farming
-- Credit desynchronization
-
-This enables detection of:
-
-- Financial exploitation chains
-- Marketplace manipulation
-- Reward system abuse
-- Multi-account farming strategies
+- Credit inflation
+- Incentive manipulation
+- Multi-account farming
+- Transaction desynchronization
 
 ---
 
@@ -489,9 +440,25 @@ This enables detection of:
 
 ## Frontend
 
-- Streamlit
+### Current
+- Streamlit (Research / Internal UI)
+
+### Future
 - Next.js
-- Mermaid.js
+- React
+- Tailwind
+- React Flow
+- Cytoscape.js
+
+---
+
+## Backend
+
+- FastAPI
+- Async Python
+- Event-driven architecture
+
+---
 
 ## AI & Embeddings
 
@@ -500,30 +467,18 @@ This enables detection of:
 - Instructor Embeddings
 - LlamaIndex
 
+---
+
 ## Databases
 
 ### Neo4j
-Primary graph engine for:
-
-- Ontology traversal
-- Evidence graphs
-- Workflow relations
-- Causal reasoning
+Graph-native ontology and evidence engine.
 
 ### ChromaDB
-Used for:
-
-- Vector retrieval
-- Semantic search
-- RAG similarity queries
+Semantic retrieval and vector search.
 
 ### SQLite
-Operational storage for:
-
-- Telemetry
-- User progress
-- Replay sessions
-- Local metadata
+Operational telemetry and local persistence.
 
 ---
 
@@ -531,23 +486,23 @@ Operational storage for:
 
 ```text
 LogicLlama/
-├── core_reasoning/       # Decision engine, hypotheses, confidence scoring
+├── core_reasoning/       # Decision engine and hypothesis systems
 ├── workflow_analysis/    # HTTP parsing and workflow reconstruction
-├── ontology_graph/       # Neo4j schemas and ontology traversal
-├── ai_stack/             # Local LLM orchestration and extraction models
-├── persistence/          # Database adapters and storage layers
-├── safety_governance/    # Scope validation and bounded execution
+├── ontology_graph/       # Neo4j schemas and graph traversal
+├── ai_stack/             # LLM orchestration and extraction models
+├── persistence/          # Database adapters
+├── safety_governance/    # Scope validation and execution controls
 ├── api_gateway/          # REST APIs and CLI routing
-├── ui_layer/             # Frontend interfaces and visualization
-├── schemas/              # Typed reasoning and ontology schemas
-├── simulations/          # Attack replay and workflow simulation
-├── datasets/             # Security writeups and training corpora
-└── docs/                 # Architecture and technical documentation
+├── ui_layer/             # Web interfaces and visualizations
+├── schemas/              # Typed reasoning schemas
+├── simulations/          # Replay and attack simulations
+├── datasets/             # Writeups and training corpora
+└── docs/                 # Technical documentation
 ```
 
 ---
 
-# Example Offensive Reasoning Flow
+# Example Reasoning Flow
 
 ```mermaid
 flowchart LR
@@ -557,8 +512,8 @@ flowchart LR
     D --> E[Signal Correlation]
     E --> F{Confidence Threshold}
 
-    F -->|Low| G[Generate Alternative Branch]
-    F -->|Medium| H[Probe Validation]
+    F -->|Low| G[Alternative Branch]
+    F -->|Medium| H[Validation Phase]
     F -->|High| I[Exploit Confirmation]
 
     I --> J[Evidence Graph Update]
@@ -569,9 +524,9 @@ flowchart LR
 
 # Safety & Governance
 
-LogicLlama is designed with bounded autonomous execution.
+LogicLlama implements bounded autonomous execution.
 
-Core controls include:
+Controls include:
 
 - Scope validation
 - Rate limiting
@@ -595,30 +550,33 @@ The platform prioritizes:
 
 ## Completed
 
-- [x] Local RAG Knowledge Base
-- [x] Interactive Mentorship UI
-- [x] Signal Extraction Schema
-- [x] Adaptive Decision Engine
+- [x] Local RAG Foundation
+- [x] Interactive Mentorship Interface
+- [x] Signal Extraction Engine
+- [x] Adaptive Decision Layer
 - [x] Event-Driven Architecture Migration
 - [x] Confidence-Based Traversal Logic
-- [x] Hypothesis Lifecycle Management
+
+---
 
 ## In Progress
 
-- [ ] Neo4j Graph-Native Ontology
+- [ ] Neo4j Ontology Integration
 - [ ] Automated Workflow Reconstruction
 - [ ] Temporal Reasoning Engine
 - [ ] Economic Exploitation Modeling
 - [ ] Replayable Session Simulator
-- [ ] Autonomous Multi-Branch Exploration
+- [ ] Multi-Branch Autonomous Traversal
 
-## Future Vision
+---
 
-- [ ] Multi-Agent Cooperative Reasoning
+## Future Research
+
+- [ ] Multi-Agent Security Reasoning
 - [ ] Reinforcement Learning from Successful Exploits
+- [ ] Autonomous Attack Surface Mapping
 - [ ] Cross-Application Behavioral Clustering
-- [ ] Autonomous Attack Surface Modeling
-- [ ] Interactive Graph Visualization Interface
+- [ ] Interactive Graph Intelligence UI
 
 ---
 
@@ -631,13 +589,13 @@ LogicLlama explores a new category of offensive security:
 Where systems reason about:
 
 - Intent
-- State
+- Workflow
 - Time
 - Trust
 - Economics
-- Human workflow assumptions
+- Human assumptions
 
-instead of merely replaying payloads.
+instead of simply replaying payloads.
 
 ---
 
@@ -649,18 +607,15 @@ MIT License.
 
 # Final Statement
 
-LogicLlama is an attempt to push offensive security beyond static automation.
-
-The future of application security is not payload generation.
+The future of application security is not static automation.
 
 It is:
 
 - Workflow intelligence
 - State reasoning
-- Causal analysis
-- Temporal modeling
-- Adaptive exploitation
+- Temporal analysis
+- Economic modeling
+- Causal inference
 - Explainable offensive AI
 
 LogicLlama is building toward that future.
-
