@@ -71,7 +71,6 @@ flowchart TB
 
     Progress --> SQLite
     Visual --> RAG
-    end
 ```
 
 ---
@@ -116,7 +115,6 @@ flowchart TB
     UC2 -.-> UC5
     UC1 -.-> UC5
     UC1 -.-> UC6
-    end
 ```
 
 ---
@@ -185,7 +183,6 @@ classDiagram
     RAGEngine "1" --> "*" BusinessLogicCase
     RAGEngine --> LocalLLM
     RAGEngine --> VectorDatabase
-    end
 ```
 
 ---
