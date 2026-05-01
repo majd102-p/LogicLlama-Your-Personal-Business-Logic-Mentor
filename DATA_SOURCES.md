@@ -6,8 +6,8 @@ LogicLlama is powered by a multi-layered intelligence pipeline that combines off
 Unlike traditional RAG systems that merely index text documents, LogicLlama transforms raw security intelligence into structured reasoning artifacts used for autonomous workflow analysis and business logic inference.
 
 Intelligence Data Architecture
-flowchart LR
 
+flowchart LR
     subgraph Sources["External Intelligence Sources"]
         NVD[NVD / CVE]
         CWE[MITRE CWE]
@@ -16,41 +16,35 @@ flowchart LR
         OWASP[OWASP]
         INT[Intigriti]
     end
-
     subgraph Processing["Normalization & Processing"]
         Parser[Document Parser]
         Cleaner[Normalization Engine]
         Extractor[Signal Extractor]
         Chunker[Semantic Chunking]
     end
-
     subgraph Intelligence["Knowledge Transformation"]
         Embedding[Embedding Engine]
         Ontology[Ontology Mapper]
         Relation[Causal Relation Builder]
         Workflow[Workflow Pattern Extractor]
     end
-
     subgraph Storage["Persistence Layer"]
         Vector[(ChromaDB)]
         Graph[(Neo4j)]
         Cases[(Pattern Store)]
     end
-
     Sources --> Parser
     Parser --> Cleaner
     Cleaner --> Extractor
     Extractor --> Chunker
-
     Chunker --> Embedding
     Chunker --> Ontology
     Chunker --> Workflow
-
     Ontology --> Relation
-
     Embedding --> Vector
     Relation --> Graph
     Workflow --> Cases
+    
 Official Vulnerability Intelligence Sources
 NVD — National Vulnerability Database
 Source of structured CVE metadata
