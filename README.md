@@ -36,9 +36,6 @@ LogicLlama solves these challenges by combining a powerful local LLM with a care
 
 ```mermaid
 flowchart TB
-    %% Title
-    title[LogicLlama - High-Level Component Architecture]
-
     subgraph User["User Interface"]
         UI[Streamlit Dashboard]
     end
@@ -95,6 +92,9 @@ flowchart TB
     class RAG,LLM ai
     class VectorDB,SQLite storage
     class Writeups data
+
+    %% Title as comment (GitHub doesn't support title node well)
+    %% LogicLlama - High-Level Component Architecture
  ```
 
 ---
