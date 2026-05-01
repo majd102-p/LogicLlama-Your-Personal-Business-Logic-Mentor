@@ -95,7 +95,7 @@ flowchart TB
 
     %% Title as comment (GitHub doesn't support title node well)
     %% LogicLlama - High-Level Component Architecture
- ```
+
 
 ---
 
