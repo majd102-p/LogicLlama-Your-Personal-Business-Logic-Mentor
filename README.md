@@ -1,253 +1,666 @@
-# LogicLlama: Your Personal Business Logic Mentor
+# LogicLlama
+## Autonomous Business Logic Intelligence & Reasoning Platform
 
-![LogicLlama](https://via.placeholder.com/800x200/0A2540/00FFAA?text=LogicLlama)
-
-**A fully local, privacy-first AI mentor specialized in Business Logic Vulnerabilities.**
-
----
-
-## Overview
-
-**LogicLlama** is an intelligent, offline AI-powered mentor designed specifically to help penetration testers, bug bounty hunters, and security researchers master **Business Logic Vulnerabilities** (Logic Flaws).
-
-It acts as a personal tutor that provides interactive learning, contextual analysis of HTTP requests, visual explanations, and structured progress tracking — all while running **100% locally** to ensure complete privacy and data security.
+> A fully local AI-driven reasoning system designed to analyze, model, and understand business logic vulnerabilities through workflow intelligence, causal inference, adaptive traversal, and graph-native security reasoning.
 
 ---
 
-## The Problem
+# Vision
 
-Business Logic Vulnerabilities remain one of the hardest categories to detect and learn:
+LogicLlama is not a traditional vulnerability scanner.
+It is not a wrapper around a language model.
+It is not a payload recommendation chatbot.
 
-- Automated security scanners cannot understand business context and rules.
-- Cloud-based LLMs pose significant privacy risks when analyzing sensitive HTTP requests or internal application logic.
-- Quality educational materials are scattered across different platforms and difficult to study systematically.
+LogicLlama is an **Offensive Security Reasoning Engine** focused on one of the hardest unsolved domains in application security:
+
+## Business Logic Vulnerabilities
+
+Traditional tooling operates at the request level.
+LogicLlama operates at the **workflow level**.
+
+Instead of asking:
+
+> “What payload breaks this endpoint?”
+
+LogicLlama asks:
+
+> “What intended state transition, economic rule, trust assumption, or workflow dependency can be abused?”
+
+The platform models applications as:
+
+- State machines
+- Economic systems
+- Permission graphs
+- Temporal workflows
+- Causal dependency chains
+
+This creates a fundamentally different approach to offensive security reasoning.
 
 ---
 
-## Our Solution
+# Why LogicLlama Exists
 
-LogicLlama solves these challenges by combining a powerful local LLM with a carefully curated knowledge base using Retrieval-Augmented Generation (RAG). The entire system runs offline on your machine.
+Business logic flaws remain among the most dangerous and least understood classes of vulnerabilities because:
+
+- Automated scanners cannot infer business intent.
+- Traditional fuzzing lacks contextual reasoning.
+- Static payload testing fails against workflow-based exploits.
+- Existing AI systems hallucinate attack paths without structured reasoning.
+- Sensitive workflows cannot safely be uploaded to cloud-based LLMs.
+
+LogicLlama addresses this by combining:
+
+- Local AI execution
+- Graph-native reasoning
+- Event-driven state analysis
+- Hypothesis-driven traversal
+- Causal evidence tracking
+- Retrieval-Augmented Security Knowledge
+
+All running fully offline.
 
 ---
 
-## Architecture
+# Core Philosophy
 
-### High-Level Component Diagram
+LogicLlama treats applications as living systems.
+
+The engine continuously:
+
+1. Reconstructs workflows
+2. Models intended state transitions
+3. Generates exploitation hypotheses
+4. Correlates runtime signals
+5. Adjusts confidence dynamically
+6. Traverses alternative attack branches
+7. Builds explainable causal evidence graphs
+
+This enables reasoning beyond:
+
+- Payload injection
+- Static endpoint scanning
+- Regex-based anomaly detection
+- Single-request analysis
+
+---
+
+# Intelligence Architecture
 
 ```mermaid
 flowchart TB
-    subgraph User["User Layer"]
-        UI[Streamlit Dashboard]
+    subgraph UserLayer["User & Research Layer"]
+        UI[Web Interface]
+        CLI[CLI Interface]
+        API[REST API]
     end
 
-    subgraph Core["Core Application"]
-        Analyzer[HTTP Request Analyzer]
-        Challenge[Challenge Mode Engine]
-        RAG[RAG Engine]
-        Visual[Visualization Engine]
-        Progress[Progress Tracker]
+    subgraph Intelligence["Reasoning & Intelligence Layer"]
+        Planner[Adaptive Planning Engine]
+        Decision[Decision Engine]
+        Signals[Signal Correlation Engine]
+        State[State Machine Engine]
+        Evidence[Evidence Graph Engine]
+        Hypothesis[Hypothesis Lifecycle Manager]
     end
 
-    subgraph AI["AI & Knowledge Layer"]
-        LLM[Local LLM\nLlama 3.1/3.2 via Ollama]
-        VectorDB[Vector Database\nChromaDB]
+    subgraph Offensive["Security Analysis Layer"]
+        HTTP[HTTP Workflow Analyzer]
+        Logic[Business Logic Mapper]
+        Race[Concurrency Analyzer]
+        Access[Access Control Analyzer]
+        Workflow[Workflow State Validator]
     end
 
-    subgraph Data["Data Layer"]
-        SQLite[(SQLite\nProgress DB)]
-        RawData[Raw Writeups\nPortSwigger + OWASP]
+    subgraph Knowledge["Knowledge & Learning Layer"]
+        RAG[RAG Retrieval Engine]
+        Ontology[Logic Ontology Engine]
+        Embeddings[Embedding Service]
+        Cases[Case Intelligence Store]
     end
 
-    UI --> Analyzer
-    UI --> Challenge
-    UI --> Progress
-    UI --> Visual
+    subgraph AI["Local AI Layer"]
+        LLM[Local LLM]
+        Classifier[Vulnerability Classifier]
+        Extractor[Signal Extraction Models]
+    end
 
-    Analyzer --> RAG
-    Challenge --> RAG
+    subgraph Data["Persistence Layer"]
+        Vector[(ChromaDB)]
+        Graph[(Neo4j)]
+        SQLite[(SQLite)]
+        Memory[(Long-Term Memory)]
+    end
+
+    UI --> Planner
+    CLI --> Planner
+    API --> Planner
+
+    Planner --> Decision
+    Decision --> Signals
+    Signals --> State
+    State --> Evidence
+    Evidence --> Hypothesis
+
+    Decision --> HTTP
+    Decision --> Logic
+    Decision --> Race
+    Decision --> Access
+    Decision --> Workflow
+
+    HTTP --> RAG
+    Logic --> Ontology
+
     RAG --> LLM
-    RAG --> VectorDB
-    VectorDB --> RawData
+    Ontology --> Graph
 
-    Progress --> SQLite
-    Visual --> RAG
+    Embeddings --> Vector
+    Cases --> Vector
+
+    Evidence --> Graph
+    Hypothesis --> Memory
 ```
 
 ---
 
-## Key Features
+# Core Engines
 
-- **Challenge Mode**: Learn through realistic scenarios with interactive evaluation and hints.
-- **HTTP Request Analyst**: Paste raw HTTP requests from Burp Suite or any proxy to detect potential logic flaws.
-- **Smart Tool Advisor**: Get tailored recommendations for tools and testing methodologies.
-- **Visual Logic Flow**: Generate clear Mermaid diagrams comparing normal vs. vulnerable workflows.
-- **Progress Tracker**: Track your learning progress with personal notes using SQLite.
+## Adaptive Planning Engine
+
+Responsible for autonomous traversal and execution orchestration.
+
+Capabilities:
+
+- Dynamic attack path generation
+- Priority-based branch scheduling
+- Context-aware execution planning
+- Runtime graph traversal
+- Failure recovery and rollback
+
+The planner continuously recalculates the next best action based on:
+
+- Signal confidence
+- Historical outcomes
+- Workflow state transitions
+- Resource constraints
+- Exploitation probability
 
 ---
 
-## Use Cases
+## Decision Engine
 
-### Supported Use Cases
-```mermaid
- flowchart TD
-    Actor[Security Researcher\n/Pentester\n/Bug Bounty Hunter] 
-    
-    subgraph System["LogicLlama System"]
-        UC1[Start Interactive Challenge]
-        UC2[Analyze HTTP Request for Logic Flaws]
-        UC3[View Learning Progress]
-        UC4[Browse Knowledge Base\nby OWASP BLA Category]
-        UC5[Generate Visual Logic Flow - Mermaid]
-        UC6[Receive Smart Tool Recommendations]
-        UC7[Add Personal Notes to Case]
-        UC8[Import Personal Writeups]
-    end
+The Decision Engine acts as the central reasoning core.
 
-    Actor --> UC1
-    Actor --> UC2
-    Actor --> UC3
-    Actor --> UC4
-    Actor --> UC5
-    Actor --> UC6
-    Actor --> UC7
-    Actor --> UC8
+It ranks tools, attack paths, and hypotheses using:
 
-    UC2 -.-> UC5
-    UC1 -.-> UC5
-    UC1 -.-> UC6
+- Weighted rule systems
+- Confidence scoring
+- Historical success/failure learning
+- Contextual memory bias
+- Adaptive scoring formulas
+
+### Decision Formula
+
+```text
+final_score =
+base_score
++ matched_rule_weights
++ memory_bias
++ success_learning_boost
+- historical_failure_penalty
 ```
 
+The engine supports:
+
+- Min-max normalization
+- Confidence-aware pruning
+- Multi-branch prioritization
+- Explainable ranking outputs
+
 ---
 
-## Core System Design
+## Signal Correlation Engine
 
-### High-Level Class Diagram
-```mermaid
-classDiagram
-    class LogicLlamaApp {
-        +RAGEngine ragEngine
-        +ChallengeManager challengeManager
-        +HTTPRequestAnalyzer httpAnalyzer
-        +ProgressTracker progressTracker
-        +Visualizer visualizer
-        +initialize()
-        +run()
-    }
+Business logic flaws rarely reveal themselves through a single response.
 
-    class RAGEngine {
-        +VectorDatabase vectorDB
-        +LocalLLM llm
-        +query(query: str) RAGResponse
-        +retrieveSimilarCases(context: str) List~BusinessLogicCase~
-    }
+The Signal Engine correlates multiple weak indicators into meaningful exploit confidence.
 
-    class HTTPRequestAnalyzer {
-        +analyzeRequest(rawRequest: str) AnalysisResult
-        +detectLogicFlaws(request: HttpRequest) List~Vulnerability~
-    }
+Examples:
 
-    class ChallengeManager {
-        +loadChallenge(id: str) Challenge
-        +validateAnswer(userAnswer: str, challengeId: str) ValidationResult
-        +generateHint() str
-    }
+- Response length differentials
+- Timing anomalies
+- Duplicate transaction states
+- Unauthorized state transitions
+- Unexpected workflow success
+- Parallel execution inconsistencies
 
-    class ProgressTracker {
-        +saveProgress(userId: str, caseId: str, score: int)
-        +getUserProgress() ProgressStats
-        +addNote(caseId: str, note: str)
-    }
+Signals influence:
 
-    class Visualizer {
-        +generateMermaidFlow(logicSteps: List) str
-        +renderDiagram(diagramType: str)
-    }
+- Hypothesis confidence
+- Branch traversal
+- Vulnerability scoring
+- Attack escalation
 
-    class BusinessLogicCase {
-        +caseId: str
-        +title: str
-        +flawType: str
-        +owaspCategory: str
-        +domain: str
-        +description: str
-        +attackScenario: str
-        +prevention: str
-    }
+---
 
-    LogicLlamaApp "1" --> "1" RAGEngine
-    LogicLlamaApp "1" --> "1" HTTPRequestAnalyzer
-    LogicLlamaApp "1" --> "1" ChallengeManager
-    LogicLlamaApp "1" --> "1" ProgressTracker
-    LogicLlamaApp "1" --> "1" Visualizer
+## State Machine Engine
 
-    RAGEngine "1" --> "*" BusinessLogicCase
-    RAGEngine --> LocalLLM
-    RAGEngine --> VectorDatabase
+The platform reconstructs workflows into explicit state models.
+
+LogicLlama identifies:
+
+- Expected transitions
+- Forbidden transitions
+- Missing validations
+- Sequence bypasses
+- Temporal inconsistencies
+
+The engine understands workflows as:
+
+```text
+State A → State B → State C
 ```
 
----
+and detects when:
 
-## Technology Stack
+```text
+State A → State C
+```
 
-- **Large Language Model**: Llama 3.1 / 3.2 via Ollama (fully local)
-- **RAG Framework**: LlamaIndex
-- **Vector Database**: ChromaDB
-- **Frontend**: Streamlit
-- **Progress & Notes**: SQLite
-- **Visualization**: Mermaid.js
-- **All components run offline** after initial setup
+is improperly allowed.
 
 ---
 
-## Project Structure
+## Evidence Graph Engine
 
-```plaintext
+Unlike traditional scanners, LogicLlama stores reasoning chains.
+
+Every hypothesis, signal, transition, and decision becomes part of a causal graph.
+
+This enables:
+
+- Explainable AI security reasoning
+- Replayable sessions
+- Attack path visualization
+- Debugging of AI decisions
+- Future reinforcement learning
+
+Stored in Neo4j as:
+
+- Workflow nodes
+- Vulnerability nodes
+- Signal nodes
+- State edges
+- Causal relationships
+
+---
+
+# Security Analysis Layer
+
+## HTTP Workflow Analyzer
+
+Parses:
+
+- Raw HTTP requests
+- Proxy histories
+- Burp Suite exports
+- Multi-step flows
+- Session transitions
+
+Extracts:
+
+- Parameters
+- Tokens
+- State indicators
+- Role context
+- Temporal relationships
+
+---
+
+## Business Logic Mapper
+
+Transforms workflows into semantic logic graphs.
+
+Detects:
+
+- Workflow abuse
+- Reward manipulation
+- Missing validation
+- Broken assumptions
+- Economic exploit paths
+
+---
+
+## Concurrency Analyzer
+
+Focused on race conditions and temporal abuse.
+
+Capabilities:
+
+- Parallel request simulation
+- Race window detection
+- Single-action duplication analysis
+- Eventual consistency modeling
+- Temporal ordering validation
+
+Targets:
+
+- Coupon reuse
+- Balance inflation
+- Double spending
+- Vote duplication
+- Reward amplification
+
+---
+
+## Access Control Analyzer
+
+Maps relationships between:
+
+- Roles
+- Resources
+- State ownership
+- Permission inheritance
+- Workflow privileges
+
+Specialized for:
+
+- IDOR
+- Cross-role escalation
+- Workflow authorization bypass
+- Trust-boundary violations
+
+---
+
+# Knowledge & Learning Layer
+
+## RAG Retrieval Engine
+
+Provides contextual retrieval over:
+
+- PortSwigger labs
+- OWASP BLA
+- CVEs
+- Writeups
+- Internal case intelligence
+- User-imported research
+
+Features:
+
+- Semantic chunking
+- Similarity search
+- CWE-linked retrieval
+- Workflow-aware ranking
+
+---
+
+## Business Logic Ontology
+
+The ontology layer creates a graph-native representation of logic vulnerabilities.
+
+Examples:
+
+```text
+Race Condition
+    ↳ Economic Abuse
+        ↳ Coupon Duplication
+            ↳ Reward Inflation
+```
+
+This allows:
+
+- Cross-pattern reasoning
+- Semantic vulnerability traversal
+- Structural exploit discovery
+- Knowledge clustering
+
+---
+
+# AI Stack
+
+## Fully Local AI Execution
+
+LogicLlama is privacy-first.
+
+All components run offline:
+
+- Llama 3.x via Ollama
+- Local embeddings
+- Local vector search
+- Local workflow analysis
+
+No HTTP requests or internal workflows are exposed externally.
+
+---
+
+## Structured AI Reasoning
+
+The platform avoids raw LLM execution for critical logic.
+
+Instead, it combines:
+
+- Deterministic rule engines
+- Structured DSL execution
+- Typed schemas
+- Confidence scoring
+- Graph validation
+
+The LLM assists reasoning.
+It does not control execution blindly.
+
+---
+
+# Temporal & Economic Intelligence
+
+LogicLlama extends beyond traditional web security.
+
+## Temporal Reasoning
+
+Models:
+
+- Request ordering
+- Race windows
+- Delayed consistency
+- Async state propagation
+- Multi-node synchronization flaws
+
+---
+
+## Economic Logic Layer
+
+Tracks:
+
+- Incentive abuse
+- Reward duplication
+- Balance inflation
+- Refund amplification
+- Token farming
+- Credit desynchronization
+
+This enables detection of:
+
+- Financial exploitation chains
+- Marketplace manipulation
+- Reward system abuse
+- Multi-account farming strategies
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- Streamlit
+- Next.js
+- Mermaid.js
+
+## AI & Embeddings
+
+- Ollama
+- Llama 3.x
+- Instructor Embeddings
+- LlamaIndex
+
+## Databases
+
+### Neo4j
+Primary graph engine for:
+
+- Ontology traversal
+- Evidence graphs
+- Workflow relations
+- Causal reasoning
+
+### ChromaDB
+Used for:
+
+- Vector retrieval
+- Semantic search
+- RAG similarity queries
+
+### SQLite
+Operational storage for:
+
+- Telemetry
+- User progress
+- Replay sessions
+- Local metadata
+
+---
+
+# Project Structure
+
+```text
 LogicLlama/
-├── data/
-│   ├── raw/                    # Original writeups and labs
-│   └── processed/              # Processed and chunked documents
-├── src/
-│   ├── ingestion/              # Data ingestion and embedding pipeline
-│   ├── rag/                    # RAG engine and retrieval logic
-│   ├── analysis/               # HTTP Request Analyzer & Challenge logic
-│   ├── core/                   # Main application services
-│   └── ui/                     # Streamlit user interface
-├── database/
-│   └── progress.db             # SQLite database for user progress
-├── docs/
-│   └── diagrams/               # UML and architecture diagrams
-├── README.md
-├── requirements.txt
-├── pyproject.toml
-└── .env.example
+├── core_reasoning/       # Decision engine, hypotheses, confidence scoring
+├── workflow_analysis/    # HTTP parsing and workflow reconstruction
+├── ontology_graph/       # Neo4j schemas and ontology traversal
+├── ai_stack/             # Local LLM orchestration and extraction models
+├── persistence/          # Database adapters and storage layers
+├── safety_governance/    # Scope validation and bounded execution
+├── api_gateway/          # REST APIs and CLI routing
+├── ui_layer/             # Frontend interfaces and visualization
+├── schemas/              # Typed reasoning and ontology schemas
+├── simulations/          # Attack replay and workflow simulation
+├── datasets/             # Security writeups and training corpora
+└── docs/                 # Architecture and technical documentation
+```
 
-## Getting Started
+---
 
-Detailed installation and setup instructions will be added once the core functionality is implemented.
+# Example Offensive Reasoning Flow
 
-### Prerequisites
+```mermaid
+flowchart LR
+    A[Import Proxy History] --> B[Workflow Reconstruction]
+    B --> C[State Graph Generation]
+    C --> D[Hypothesis Creation]
+    D --> E[Signal Correlation]
+    E --> F{Confidence Threshold}
 
-- Python 3.11 or higher
-- Ollama with Llama 3.1 or 3.2 model
-- Git
+    F -->|Low| G[Generate Alternative Branch]
+    F -->|Medium| H[Probe Validation]
+    F -->|High| I[Exploit Confirmation]
 
+    I --> J[Evidence Graph Update]
+    J --> K[Explainable Report]
+```
 
+---
 
-## Roadmap
+# Safety & Governance
 
-- Phase 1: Data Ingestion Pipeline & RAG Foundation
-- Phase 2: Streamlit UI + Progress Tracker
-- Phase 3: Challenge Mode + HTTP Request Analyst
-- Phase 4: Visualization Engine & Tool Advisor
-- Phase 5: Performance Optimization & Docker Support
-- Phase 6: Documentation & Open Source Release
+LogicLlama is designed with bounded autonomous execution.
 
-## Contributing
-Contributions are welcome! Whether it's improving the knowledge base, enhancing prompts, fixing bugs, or adding new features — feel free to open an issue or submit a pull request.
-See CONTRIBUTING.md for more details.
+Core controls include:
 
-## License
+- Scope validation
+- Rate limiting
+- Destructive action prevention
+- Branch depth limits
+- Resource governance
+- Human confirmation gates
+- Session isolation
+- Replay sandboxing
 
-This project is licensed under the MIT License.
+The platform prioritizes:
 
-Built with focus on privacy, education, and deep technical understanding.
+- Research safety
+- Explainability
+- Controlled experimentation
+- Auditable execution
+
+---
+
+# Roadmap
+
+## Completed
+
+- [x] Local RAG Knowledge Base
+- [x] Interactive Mentorship UI
+- [x] Signal Extraction Schema
+- [x] Adaptive Decision Engine
+- [x] Event-Driven Architecture Migration
+- [x] Confidence-Based Traversal Logic
+- [x] Hypothesis Lifecycle Management
+
+## In Progress
+
+- [ ] Neo4j Graph-Native Ontology
+- [ ] Automated Workflow Reconstruction
+- [ ] Temporal Reasoning Engine
+- [ ] Economic Exploitation Modeling
+- [ ] Replayable Session Simulator
+- [ ] Autonomous Multi-Branch Exploration
+
+## Future Vision
+
+- [ ] Multi-Agent Cooperative Reasoning
+- [ ] Reinforcement Learning from Successful Exploits
+- [ ] Cross-Application Behavioral Clustering
+- [ ] Autonomous Attack Surface Modeling
+- [ ] Interactive Graph Visualization Interface
+
+---
+
+# Research Direction
+
+LogicLlama explores a new category of offensive security:
+
+## Cognitive Offensive Security
+
+Where systems reason about:
+
+- Intent
+- State
+- Time
+- Trust
+- Economics
+- Human workflow assumptions
+
+instead of merely replaying payloads.
+
+---
+
+# License
+
+MIT License.
+
+---
+
+# Final Statement
+
+LogicLlama is an attempt to push offensive security beyond static automation.
+
+The future of application security is not payload generation.
+
+It is:
+
+- Workflow intelligence
+- State reasoning
+- Causal analysis
+- Temporal modeling
+- Adaptive exploitation
+- Explainable offensive AI
+
+LogicLlama is building toward that future.
+
