@@ -115,7 +115,6 @@ flowchart TB
     UC2 -.-> UC5
     UC1 -.-> UC5
     UC1 -.-> UC6
-*[ضع هنا Use Case Diagram - Mermaid]*
 
 ---
 
@@ -183,7 +182,6 @@ classDiagram
     RAGEngine "1" --> "*" BusinessLogicCase
     RAGEngine --> LocalLLM
     RAGEngine --> VectorDatabase
-*[ضع هنا Simplified Class Diagram - Mermaid]*
 
 ---
 
