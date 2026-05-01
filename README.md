@@ -36,65 +36,41 @@ LogicLlama solves these challenges by combining a powerful local LLM with a care
 
 ```mermaid
 flowchart TB
-    subgraph User["User Interface"]
+    subgraph User["User Layer"]
         UI[Streamlit Dashboard]
     end
 
-    subgraph Application["Application Core"]
-        direction TB
-        Analyzer[HTTP Request\nAnalyst]
-        Challenge[Challenge Mode\nEngine]
-        Advisor[Tool Advisor]
-        Visual[Visualization\nEngine\n(Mermaid)]
+    subgraph Core["Core Application"]
+        Analyzer[HTTP Request Analyzer]
+        Challenge[Challenge Mode Engine]
+        RAG[RAG Engine]
+        Visual[Visualization Engine]
         Progress[Progress Tracker]
     end
 
-    subgraph Intelligence["Intelligence Layer"]
-        RAG[RAG Engine\n(LlamaIndex)]
-        LLM[Local LLM\n(Llama 3.1 / 3.2 via Ollama)]
+    subgraph AI["AI & Knowledge Layer"]
+        LLM[Local LLM\nLlama 3.1/3.2 via Ollama]
+        VectorDB[Vector Database\nChromaDB]
     end
 
-    subgraph Storage["Storage Layer"]
-        VectorDB[Vector Database\n(ChromaDB)]
-        SQLite[(SQLite\nUser Progress & Notes)]
+    subgraph Data["Data Layer"]
+        SQLite[(SQLite\nProgress DB)]
+        RawData[Raw Writeups\nPortSwigger + OWASP]
     end
 
-    subgraph Data["Data Sources"]
-        Writeups[Curated Writeups\n(PortSwigger + OWASP BLA)]
-    end
-
-    %% Connections
     UI --> Analyzer
     UI --> Challenge
-    UI --> Advisor
-    UI --> Visual
     UI --> Progress
+    UI --> Visual
 
     Analyzer --> RAG
     Challenge --> RAG
-    Advisor --> RAG
+    RAG --> LLM
+    RAG --> VectorDB
+    VectorDB --> RawData
+
+    Progress --> SQLite
     Visual --> RAG
-
-    RAG <--> LLM
-    RAG <--> VectorDB
-
-    VectorDB <--> Writeups
-    Progress <--> SQLite
-
-    classDef ui fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    classDef core fill:#f3e5f5,stroke:#7b1fa2
-    classDef ai fill:#e8f5e9,stroke:#388e3c
-    classDef storage fill:#fff3e0,stroke:#f57c00
-    classDef data fill:#fce4ec,stroke:#c2185b
-
-    class UI ui
-    class Analyzer,Challenge,Advisor,Visual,Progress core
-    class RAG,LLM ai
-    class VectorDB,SQLite storage
-    class Writeups data
-
-    %% Title as comment (GitHub doesn't support title node well)
-    %% LogicLlama - High-Level Component Architecture
 
 
 ---
@@ -112,7 +88,33 @@ flowchart TB
 ## Use Cases
 
 ### Supported Use Cases
+```mermaid
+ flowchart TD
+    Actor[Security Researcher\n/Pentester\n/Bug Bounty Hunter] 
+    
+    subgraph System["LogicLlama System"]
+        UC1[Start Interactive Challenge]
+        UC2[Analyze HTTP Request for Logic Flaws]
+        UC3[View Learning Progress]
+        UC4[Browse Knowledge Base\nby OWASP BLA Category]
+        UC5[Generate Visual Logic Flow\n(Mermaid)]
+        UC6[Receive Smart Tool Recommendations]
+        UC7[Add Personal Notes to Case]
+        UC8[Import Personal Writeups]
+    end
 
+    Actor --> UC1
+    Actor --> UC2
+    Actor --> UC3
+    Actor --> UC4
+    Actor --> UC5
+    Actor --> UC6
+    Actor --> UC7
+    Actor --> UC8
+
+    UC2 -.-> UC5
+    UC1 -.-> UC5
+    UC1 -.-> UC6
 *[ضع هنا Use Case Diagram - Mermaid]*
 
 ---
@@ -120,7 +122,67 @@ flowchart TB
 ## Core System Design
 
 ### High-Level Class Diagram
+```mermaid
+classDiagram
+    class LogicLlamaApp {
+        +RAGEngine ragEngine
+        +ChallengeManager challengeManager
+        +HTTPRequestAnalyzer httpAnalyzer
+        +ProgressTracker progressTracker
+        +Visualizer visualizer
+        +initialize()
+        +run()
+    }
 
+    class RAGEngine {
+        +VectorDatabase vectorDB
+        +LocalLLM llm
+        +query(query: str) RAGResponse
+        +retrieveSimilarCases(context: str) List~BusinessLogicCase~
+    }
+
+    class HTTPRequestAnalyzer {
+        +analyzeRequest(rawRequest: str) AnalysisResult
+        +detectLogicFlaws(request: HttpRequest) List~Vulnerability~
+    }
+
+    class ChallengeManager {
+        +loadChallenge(id: str) Challenge
+        +validateAnswer(userAnswer: str, challengeId: str) ValidationResult
+        +generateHint() str
+    }
+
+    class ProgressTracker {
+        +saveProgress(userId: str, caseId: str, score: int)
+        +getUserProgress() ProgressStats
+        +addNote(caseId: str, note: str)
+    }
+
+    class Visualizer {
+        +generateMermaidFlow(logicSteps: List) str
+        +renderDiagram(diagramType: str)
+    }
+
+    class BusinessLogicCase {
+        +caseId: str
+        +title: str
+        +flawType: str
+        +owaspCategory: str
+        +domain: str
+        +description: str
+        +attackScenario: str
+        +prevention: str
+    }
+
+    LogicLlamaApp "1" --> "1" RAGEngine
+    LogicLlamaApp "1" --> "1" HTTPRequestAnalyzer
+    LogicLlamaApp "1" --> "1" ChallengeManager
+    LogicLlamaApp "1" --> "1" ProgressTracker
+    LogicLlamaApp "1" --> "1" Visualizer
+
+    RAGEngine "1" --> "*" BusinessLogicCase
+    RAGEngine --> LocalLLM
+    RAGEngine --> VectorDatabase
 *[ضع هنا Simplified Class Diagram - Mermaid]*
 
 ---
