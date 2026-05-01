@@ -97,7 +97,7 @@ flowchart TB
         UC2[Analyze HTTP Request for Logic Flaws]
         UC3[View Learning Progress]
         UC4[Browse Knowledge Base\nby OWASP BLA Category]
-        UC5[Generate Visual Logic Flow\n(Mermaid)]
+        UC5[Generate Visual Logic Flow - Mermaid]
         UC6[Receive Smart Tool Recommendations]
         UC7[Add Personal Notes to Case]
         UC8[Import Personal Writeups]
