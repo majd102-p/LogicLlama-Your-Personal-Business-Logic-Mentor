@@ -1,0 +1,34 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+.vscode/
+*.zip
+backup_*.zip
+# Local environment files
+.env
+.env.*
+# OS files
+Thumbs.db
+
+# Node / build artifacts (if any future frontend)
+node_modules/
+dist/
+
+# Logs
+*.log
+
+# Editor temporary files
+*.swp
+*~
+
+# Python virtual environment created by tools
+.venv/
+
+# Archive folder (local cleanup artifacts; do not upload)
+archive/
+
+# Local mirrors and generated state
+.skills/
+database/

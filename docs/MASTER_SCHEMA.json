@@ -1,0 +1,446 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LogicLlama Elite Master Schema",
+  "description": "Advanced schema for relational and behavioral mapping of business logic vulnerabilities, functioning as a reasoning engine for AI.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "pattern_id",
+    "metadata",
+    "title",
+    "focus",
+    "search_index",
+    "core_concept",
+    "logic_flow",
+    "attack_model",
+    "developer_mindset",
+    "data_points",
+    "comparative_analysis",
+    "training",
+    "user_feedback",
+    "arsenal",
+    "impact",
+    "graph_relations",
+    "detection",
+    "mitigation",
+    "execution_context",
+    "timing",
+    "ai_features",
+    "risk_score",
+    "real_world_mapping",
+    "simulation",
+    "inference_rules",
+    "decision_logic"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "default": "1.0.0",
+      "description": "Version control for the schema to prevent breaking changes in the future."
+    },
+    "pattern_id": {
+      "type": "string",
+      "pattern": "^LOGIC-[A-Z]+-\\d{3}$",
+      "description": "Unique identifier (e.g., LOGIC-PAYMENT-001)"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Internal ID system and validation state for open-source consistency.",
+      "properties": {
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" },
+        "author": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "validated", "production"]
+        }
+      }
+    },
+    "title": {
+      "type": "string"
+    },
+    "focus": {
+      "type": "string",
+      "enum": [
+        "Business Logic",
+        "Access Control",
+        "Workflow Bypass",
+        "Race Condition",
+        "State Manipulation",
+        "Trust Boundary Violation"
+      ]
+    },
+    "search_index": {
+      "type": "object",
+      "description": "Normalization keys to optimize Retrieval-Augmented Generation (RAG) performance.",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "entities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "intent_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "core_concept": {
+      "type": "object",
+      "required": ["cwe_id", "logic_type", "abstraction"],
+      "properties": {
+        "cwe_id": { "type": "string" },
+        "logic_type": { "type": "string" },
+        "abstraction": {
+          "type": "string",
+          "description": "Generalized reusable idea (e.g. Negative Value Attack)"
+        },
+        "industry_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "logic_flow": {
+      "type": "object",
+      "required": ["intended", "actual", "breakpoint"],
+      "properties": {
+        "intended": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "actual": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "breakpoint": { "type": "string" },
+        "state_machine": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "state": { "type": "string" },
+              "transition": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "attack_model": {
+      "type": "object",
+      "properties": {
+        "attacker_goal": { "type": "string" },
+        "entry_points": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "attack_steps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "attack_graph": {
+          "type": "array",
+          "description": "Graph-based representation of the attack allowing for non-linear, branching exploitation paths.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "node": { "type": "string" },
+              "next": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "bypass_type": {
+          "type": "string",
+          "enum": [
+            "Authorization",
+            "Validation",
+            "Workflow",
+            "State",
+            "Rate Limit"
+          ]
+        }
+      }
+    },
+    "developer_mindset": {
+      "type": "object",
+      "properties": {
+        "false_assumption": { "type": "string" },
+        "missed_edge_case": { "type": "string" },
+        "design_flaw": { "type": "string" },
+        "why_it_happens": { "type": "string" }
+      }
+    },
+    "data_points": {
+      "type": "object",
+      "properties": {
+        "cves": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "cve_id": { "type": "string" },
+              "year": { "type": "number" },
+              "context": { "type": "string" },
+              "impact": { "type": "string" }
+            }
+          }
+        },
+        "writeups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "comparative_analysis": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "company_type": { "type": "string" },
+          "variation": { "type": "string" },
+          "why_different": { "type": "string" },
+          "defense_difference": { "type": "string" }
+        }
+      }
+    },
+    "training": {
+      "type": "object",
+      "properties": {
+        "scenario": { "type": "string" },
+        "questions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "hints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "solution": { "type": "string" },
+        "evaluation": {
+          "type": "object",
+          "description": "Smart evaluation logic to grade and adapt to user responses.",
+          "properties": {
+            "correct_criteria": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "scoring_logic": { "type": "string" }
+          }
+        }
+      }
+    },
+    "user_feedback": {
+      "type": "object",
+      "description": "Feedback loop to train the AI on how users interact with this specific vulnerability.",
+      "properties": {
+        "common_mistakes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "expected_wrong_answers": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "arsenal": {
+      "type": "object",
+      "properties": {
+        "tools": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "techniques": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "automation_level": {
+          "type": "string",
+          "enum": ["Manual", "Semi", "Full"]
+        }
+      }
+    },
+    "impact": {
+      "type": "object",
+      "properties": {
+        "technical": { "type": "string" },
+        "business": { "type": "string" },
+        "financial": { "type": "string" },
+        "exploitability": { "type": "string" }
+      }
+    },
+    "graph_relations": {
+      "type": "object",
+      "description": "Neo4j-ready relational graph connecting nodes and edges across vulnerabilities.",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "relation": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "detection": {
+      "type": "object",
+      "properties": {
+        "manual_signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "automated_rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "log_patterns": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "code_smells": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "mitigation": {
+      "type": "object",
+      "properties": {
+        "secure_design": { "type": "string" },
+        "code_fix": { "type": "string" },
+        "validation_rules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "monitoring": { "type": "string" }
+      }
+    },
+    "execution_context": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "enum": ["HTTP", "GraphQL", "WebSocket", "gRPC"]
+        },
+        "endpoint_example": { "type": "string" },
+        "request_sample": { "type": "string" },
+        "response_sample": { "type": "string" },
+        "request_variants": {
+          "type": "array",
+          "description": "Realistic variations of the payload to handle different contexts.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "description": { "type": "string" },
+              "request": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "properties": {
+        "is_time_sensitive": { "type": "boolean" },
+        "race_window": { "type": "string" },
+        "parallelism_factor": { "type": "number" }
+      }
+    },
+    "ai_features": {
+      "type": "object",
+      "properties": {
+        "difficulty": {
+          "type": "string",
+          "enum": ["Beginner", "Intermediate", "Advanced", "Expert"]
+        },
+        "embedding_tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "similarity_group": { "type": "string" },
+        "prerequisites": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "risk_score": {
+      "type": "object",
+      "description": "Numeric scoring system for ranking and prioritization.",
+      "properties": {
+        "base": { "type": "number" },
+        "business_weight": { "type": "number" },
+        "exploitability": { "type": "number" },
+        "final_score": { "type": "number" }
+      }
+    },
+    "real_world_mapping": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "platform_type": { "type": "string" },
+          "implementation_pattern": { "type": "string" },
+          "failure_reason": { "type": "string" }
+        }
+      }
+    },
+    "simulation": {
+      "type": "object",
+      "properties": {
+        "attack_script": { "type": "string" },
+        "expected_result": { "type": "string" },
+        "failure_conditions": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "inference_rules": {
+      "type": "array",
+      "description": "Parsable rules for the AI reasoning engine to act as a logic engine.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "condition": { "type": "string" },
+          "action": { "type": "string" },
+          "confidence": { "type": "number" }
+        }
+      }
+    },
+    "decision_logic": {
+      "type": "object",
+      "description": "AI decision layer to determine the next best action and priority.",
+      "properties": {
+        "priority_signals": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "next_best_action": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

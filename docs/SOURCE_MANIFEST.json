@@ -1,0 +1,168 @@
+{
+  "version": "1.1.0",
+  "purpose": "Canonical source manifest for LogicLlama public references and sync targets",
+  "source_families": [
+    {
+      "name": "CVE Program",
+      "url": "https://www.cve.org/",
+      "type": "authoritative-program",
+      "status": "available",
+      "notes": "Identity and lifecycle reference for CVE records"
+    },
+    {
+      "name": "NVD",
+      "url": "https://nvd.nist.gov/vuln",
+      "type": "live-sync",
+      "status": "available",
+      "notes": "Primary structured vulnerability source"
+    },
+    {
+      "name": "MITRE CWE",
+      "url": "https://cwe.mitre.org/",
+      "type": "taxonomy",
+      "status": "available",
+      "notes": "Weakness taxonomy and root-cause mapping source"
+    },
+    {
+      "name": "CISA KEV",
+      "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+      "type": "live-sync",
+      "status": "available",
+      "notes": "Public exploited-vulnerability prioritization source"
+    },
+    {
+      "name": "OWASP Top Ten",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "type": "bundled-reference",
+      "status": "bundled",
+      "local_artifact": "data/fixtures/owasp_top_ten_reference.json"
+    },
+    {
+      "name": "PortSwigger Access Control",
+      "url": "https://portswigger.net/web-security/access-control",
+      "type": "bundled-reference",
+      "status": "bundled",
+      "local_artifact": "data/fixtures/portswigger_access_control_reference.json"
+    },
+    {
+      "name": "PortSwigger Business Logic",
+      "url": "https://portswigger.net/web-security/logic-flaws",
+      "type": "bundled-reference",
+      "status": "bundled",
+      "local_artifact": "data/fixtures/portswigger_business_logic_reference.json"
+    },
+    {
+      "name": "MITRE CWE Snapshots",
+      "url": "https://cwe.mitre.org/data/xml/",
+      "type": "snapshot-archive",
+      "status": "archived",
+      "local_artifact": "data/fixtures/cwe_snapshots/CWE_SNAPSHOTS_MANIFEST.json",
+      "notes": "Versioned CWE snapshot archive for deterministic historical analysis"
+    },
+    {
+      "name": "CISA KEV Snapshots",
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "type": "snapshot-archive",
+      "status": "archived",
+      "local_artifact": "data/fixtures/kev_snapshots/KEV_SNAPSHOTS_MANIFEST.json",
+      "notes": "Current KEV snapshot and manifest for periodic archival"
+    },
+    {
+      "name": "OWASP Top Ten Editions",
+      "url": "https://owasp.org/www-project-top-ten/",
+      "type": "curated-editions",
+      "status": "archived",
+      "local_artifact": "data/fixtures/owasp_editions/OWASP_EDITIONS_MANIFEST.json",
+      "notes": "Curated edition records for 2007, 2010, 2013, 2017, 2021, and 2025"
+    }
+  ],
+  "local_artifacts": [
+    {
+      "path": "data/fixtures/owasp_top_ten_reference.json",
+      "source_family": "OWASP Top Ten",
+      "record_type": "reference"
+    },
+    {
+      "path": "data/fixtures/portswigger_access_control_reference.json",
+      "source_family": "PortSwigger Access Control",
+      "record_type": "reference"
+    },
+    {
+      "path": "data/fixtures/portswigger_business_logic_reference.json",
+      "source_family": "PortSwigger Business Logic",
+      "record_type": "reference"
+    },
+    {
+      "path": "data/fixtures/cwe_snapshots/CWE_SNAPSHOTS_MANIFEST.json",
+      "source_family": "MITRE CWE Snapshots",
+      "record_type": "snapshot_manifest"
+    },
+    {
+      "path": "data/fixtures/kev_snapshots/KEV_SNAPSHOTS_MANIFEST.json",
+      "source_family": "CISA KEV Snapshots",
+      "record_type": "snapshot_manifest"
+    },
+    {
+      "path": "data/fixtures/kev_snapshots/kev_current.json",
+      "source_family": "CISA KEV Snapshots",
+      "record_type": "snapshot_data"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/OWASP_EDITIONS_MANIFEST.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_manifest"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2025.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2021.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2017.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2013.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2010.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    },
+    {
+      "path": "data/fixtures/owasp_editions/owasp_top_ten_2007.json",
+      "source_family": "OWASP Top Ten Editions",
+      "record_type": "edition_record"
+    }
+  ],
+  "historical_targets": {
+    "nvd": {
+      "coverage": "1999-present",
+      "collection_mode": "year_backfill"
+    },
+    "cwe": {
+      "coverage": "current_plus_snapshots",
+      "collection_mode": "snapshot_sync"
+    },
+    "kev": {
+      "coverage": "current_plus_dated_snapshots",
+      "collection_mode": "periodic_sync"
+    },
+    "owasp_top_ten": {
+      "coverage": ["2007", "2010", "2013", "2017", "2021", "2025"],
+      "collection_mode": "curated_editions"
+    },
+    "portswigger": {
+      "coverage": "current_topics_and_selected_labs",
+      "collection_mode": "curated_reference_records"
+    }
+  }
+}

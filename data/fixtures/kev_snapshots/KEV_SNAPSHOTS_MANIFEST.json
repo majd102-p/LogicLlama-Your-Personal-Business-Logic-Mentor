@@ -1,0 +1,16 @@
+{
+  "archive_date": "2026-05-03T19:12:41.493694",
+  "source": "CISA Known Exploited Vulnerabilities (KEV)",
+  "snapshots": [
+    {
+      "key": "current",
+      "filename": "kev_current.json",
+      "url": "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json",
+      "date": "2026-05-03",
+      "description": "Current CISA KEV catalog (live feed)",
+      "size_bytes": 1338952,
+      "vulnerability_count": 1587,
+      "archived": true
+    }
+  ]
+}

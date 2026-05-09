@@ -1,0 +1,60 @@
+{
+  "source": {
+    "source_id": "portswigger_business_logic_reference",
+    "source_type": "portswigger",
+    "title": "Business logic vulnerabilities",
+    "uri": "https://portswigger.net/web-security/logic-flaws",
+    "license": "Free educational content",
+    "metadata": {
+      "topic": "business-logic",
+      "origin": "public-reference"
+    }
+  },
+  "case": {
+    "pattern_id": "LOGIC-PS-002",
+    "title": "Business logic flaws arise from flawed assumptions and missing state validation",
+    "focus": "Business Logic",
+    "summary": "PortSwigger describes logic flaws as unintended behavior caused by flawed assumptions about user behavior, weak validation, and mishandled application states.",
+    "source_ids": ["portswigger_business_logic_reference"],
+    "cwe_ids": ["CWE-840", "CWE-841"],
+    "keywords": ["business logic", "logic flaws", "state validation", "workflow"],
+    "signals": [
+      {
+        "name": "unexpected_state",
+        "value": true,
+        "confidence": 0.93,
+        "description": "The page emphasizes unexpected states, workflow assumptions, and weak server-side validation"
+      }
+    ],
+    "workflow_steps": [
+      {
+        "step_id": "step-1",
+        "order": 0,
+        "title": "Map business rules and workflow assumptions",
+        "state_before": "analysis-start",
+        "state_after": "workflow-constraints-mapped",
+        "notes": "Check what the application assumes about sequence and user behavior",
+        "metadata": {
+          "section": "How do business logic vulnerabilities arise?"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "ev-1",
+        "summary": "The page states that logic flaws come from flawed assumptions and weak server-side validation",
+        "source_id": "portswigger_business_logic_reference",
+        "evidence_type": "reference",
+        "metadata": {
+          "section": "What are business logic vulnerabilities?"
+        }
+      }
+    ],
+    "status": "validated",
+    "confidence": 0.92,
+    "metadata": {
+      "origin": "public-reference",
+      "notes": "Derived from the PortSwigger business-logic guidance page"
+    }
+  }
+}

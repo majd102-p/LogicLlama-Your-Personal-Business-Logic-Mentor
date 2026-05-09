@@ -1,0 +1,959 @@
+{
+  "version": "1.8.0",
+  "description": "LogicLlama Autonomous Pentesting Agent - Enterprise-Grade Engine with Safety, Governance, and Causal Reasoning",
+  "safety_layer": {
+    "scope_validation_required": true,
+    "allow_external_targets": false,
+    "rate_limit_enforcement": true,
+    "destructive_actions_blocked": true,
+    "human_confirmation_required": [
+      "mass_parallel_execution",
+      "destructive_payload",
+      "credential_operations"
+    ]
+  },
+  "resource_governance": {
+    "max_requests_per_minute": 500,
+    "memory_limit_mb": 2048,
+    "max_active_sessions": 10,
+    "auto_cleanup": true
+  },
+  "execution_engine": {
+    "auto_traverse_graph": true,
+    "max_graph_depth": 5,
+    "learning_update_trigger": "on_tool_completion",
+    "halt_conditions": [
+      "critical_vulnerability_confirmed",
+      "max_depth_reached",
+      "safety_violation_detected"
+    ],
+    "branch_control": {
+      "max_total_nodes": 50,
+      "max_branch_depth": 4,
+      "branch_decay_factor": 0.15,
+      "priority_recalculation_interval": 2
+    },
+    "runtime_behavior": {
+      "strategy": "priority_queue",
+      "parallel_execution_allowed": true,
+      "max_concurrent_branches": 3,
+      "recovery_logic": {
+        "on_branch_failure": "rollback_state",
+        "tool_blacklist_threshold": 3,
+        "max_retries_per_node": 2
+      }
+    }
+  },
+  "decision_engine": {
+    "scoring_formula": "final_score = base_score + sum(matched_rule_weights) + memory_bias_score + (success_weight_boost * success_count) - (failure_penalty * failure_count)",
+    "normalization": "min-max",
+    "selection_config": {
+      "top_k": 2,
+      "tie_breaker": "highest_base_score | lowest_complexity | random"
+    },
+    "memory_bias": {
+      "enabled": true,
+      "pattern_match_boost": 0.15,
+      "historical_failure_penalty": 0.10
+    },
+    "feedback_model": {
+      "type": "per_tool",
+      "success_counter_field": "success_count",
+      "failure_counter_field": "failure_count"
+    },
+    "learning_model": {
+      "type": "bounded",
+      "success_weight_boost": 0.05,
+      "failure_penalty": 0.03,
+      "max_adjustment": 0.2,
+      "decay_rate": 0.01
+    },
+    "confidence_model": {
+      "method": "rule_coverage",
+      "formula": "matched_rules / total_rules",
+      "integration": {
+        "affects_tool_ranking": true,
+        "affects_phase_transition": true,
+        "stopping_condition_threshold": 0.9,
+        "low_probability_pruning_threshold": 0.15
+      }
+    },
+    "explainability": {
+      "include_rule_matches": true,
+      "include_score_breakdown": true,
+      "include_memory_influence": true
+    }
+  },
+  "state_engine": {
+    "attack_state_schema": {
+      "phase": "recon | probing | exploitation | validation",
+      "current_step": "string",
+      "completed_steps": [
+        "string"
+      ],
+      "artifacts": [
+        {
+          "type": "http_response | token | payload | session_id",
+          "endpoint": "string",
+          "status_code": "number",
+          "data_hash": "string",
+          "extracted_value": "string"
+        }
+      ],
+      "discovered_signals": [
+        "string"
+      ]
+    },
+    "evidence_graph": {
+      "nodes": [],
+      "edges": [],
+      "causality_tracking": true
+    },
+    "transition_rules": [
+      {
+        "from_phase": "recon",
+        "required_signals": [
+          "endpoint_discovered",
+          "parameters_mapped"
+        ],
+        "to_phase": "probing"
+      },
+      {
+        "from_phase": "probing",
+        "required_signals": [
+          "anomaly_detected"
+        ],
+        "to_phase": "exploitation"
+      },
+      {
+        "from_phase": "exploitation",
+        "required_signals": [
+          "exploit_success",
+          "artifact_generated"
+        ],
+        "to_phase": "validation"
+      }
+    ],
+    "hypothesis_schema": {
+      "id": "string",
+      "description": "string",
+      "status": "created | active | confirmed | discarded",
+      "confidence": "number",
+      "supporting_signals": [
+        "string"
+      ],
+      "lifecycle_rules": {
+        "on_signal_match": "confidence += 0.2",
+        "on_signal_conflict": "confidence -= 0.15",
+        "confirm_threshold": 0.8,
+        "discard_threshold": 0.2
+      }
+    },
+    "long_term_memory": {
+      "successful_patterns": [
+        "string"
+      ],
+      "failed_patterns": [
+        "string"
+      ],
+      "cross_session_insights": [
+        "string"
+      ]
+    }
+  },
+  "signal_engine": {
+    "vulnerability_confidence_model": {
+      "initial_confidence": 0.1,
+      "signal_weight_multiplier": 0.2,
+      "signal_correlation_handling": {
+        "enabled": true,
+        "deduplicate_correlated_signals": true,
+        "max_confidence_per_category": 0.4
+      }
+    },
+    "extraction_logic": {
+      "response_length_diff": {
+        "field": "response_body_length_diff",
+        "operator": ">",
+        "value": 20
+      },
+      "latency_spike": {
+        "field": "response_time_ms",
+        "operator": ">",
+        "value": {
+          "type": "expression",
+          "formula": "baseline_latency_ms * 1.5"
+        }
+      },
+      "unexpected_state": {
+        "logical_and": [
+          {
+            "field": "response.status_code",
+            "operator": "==",
+            "value": 200
+          },
+          {
+            "field": "response.body",
+            "operator": "contains",
+            "value": "success"
+          },
+          {
+            "field": "prerequisite_step_skipped",
+            "operator": "==",
+            "value": true
+          }
+        ]
+      },
+      "duplicate_transaction": {
+        "field": "transaction_count_for_user",
+        "operator": ">",
+        "value": {
+          "type": "reference",
+          "field": "initial_transaction_count"
+        }
+      }
+    },
+    "defined_signals": [
+      {
+        "name": "response_length_diff",
+        "type": "boolean",
+        "effects": [
+          {
+            "target": "CWE-639",
+            "action": "increase_confidence",
+            "value": 0.25
+          },
+          {
+            "target": "CWE-285",
+            "action": "trigger_auth_bypass_check",
+            "value": 0.10
+          }
+        ]
+      },
+      {
+        "name": "latency_spike",
+        "type": "boolean",
+        "effects": [
+          {
+            "target": "CWE-362",
+            "action": "increase_confidence",
+            "value": 0.30
+          },
+          {
+            "target": "CWE-400",
+            "action": "trigger_dos_check",
+            "value": 0.15
+          }
+        ]
+      },
+      {
+        "name": "unexpected_state",
+        "type": "boolean",
+        "effects": [
+          {
+            "target": "CWE-840",
+            "action": "increase_confidence",
+            "value": 0.35
+          }
+        ]
+      },
+      {
+        "name": "duplicate_transaction",
+        "type": "boolean",
+        "effects": [
+          {
+            "target": "CWE-837",
+            "action": "confirm_vulnerability",
+            "value": 1.0
+          }
+        ]
+      }
+    ]
+  },
+  "context_schema": {
+    "concurrency_level": "number",
+    "race_window_ms": "number",
+    "testing_style": "string",
+    "automation_preference": "string",
+    "role_comparison_needed": "boolean",
+    "endpoints_count": "number",
+    "resource_constrained": "boolean",
+    "scripting_capability": "boolean",
+    "state_complexity": "string",
+    "workflow_steps": "number",
+    "requires_macro": "boolean",
+    "strict_sequence": "boolean",
+    "action_type": "string",
+    "payload_variation_needed": "boolean"
+  },
+  "context_profiles": {
+    "bug_bounty_fast": {
+      "automation_preference": "high",
+      "concurrency_level": 100,
+      "scripting_capability": true,
+      "resource_constrained": false
+    },
+    "manual_audit": {
+      "testing_style": "step_by_step",
+      "automation_preference": "low",
+      "concurrency_level": 1
+    }
+  },
+  "mapping_schema": {
+    "cwe_id": "string",
+    "vulnerability_type": "string",
+    "adaptive_plan": {
+      "initial_steps": [
+        "string"
+      ],
+      "if_success": [
+        "string"
+      ],
+      "if_failure": [
+        "string"
+      ],
+      "if_signal_detected": [
+        {
+          "signal": "string",
+          "next_steps": [
+            "string"
+          ]
+        }
+      ]
+    },
+    "strategy_graph": {
+      "parallel_execution_allowed": "boolean",
+      "nodes": [
+        {
+          "tool": "string",
+          "branches": [
+            {
+              "condition": "success | failure | signal_match",
+              "next_nodes": [
+                "string"
+              ],
+              "execution": "sequential | parallel"
+            }
+          ]
+        }
+      ]
+    },
+    "recommended_tools": [
+      {
+        "tool_name": "string",
+        "category": "string",
+        "module_plugin": "string",
+        "use_when": [
+          {
+            "rule": {
+              "field": "string",
+              "operator": "string",
+              "value": "any"
+            },
+            "weight": "number"
+          }
+        ],
+        "base_score": "number",
+        "decision_reasoning": "string",
+        "action": "string",
+        "difficulty": "string",
+        "automation_level": "string",
+        "success_count": "number",
+        "failure_count": "number"
+      }
+    ],
+    "alternative_tools": [
+      "string"
+    ],
+    "pro_tips": [
+      "string"
+    ]
+  },
+  "mappings": [
+    {
+      "cwe_id": "CWE-639",
+      "vulnerability_type": "Insecure Direct Object Reference (IDOR)",
+      "adaptive_plan": {
+        "initial_steps": [
+          "Use Caido/Burp to map all API endpoints sequentially",
+          "Identify numeric IDs or predictable references"
+        ],
+        "if_success": [
+          "Use Match & Replace to swap authorization headers automatically",
+          "Validate response differences manually"
+        ],
+        "if_failure": [
+          "Attempt parameter pollution (e.g., id=1&id=2)",
+          "Check for IDOR via JSON parameter injection"
+        ],
+        "if_signal_detected": [
+          {
+            "signal": "response_length_diff",
+            "next_steps": [
+              "Extract differing JSON keys and compare object structures manually"
+            ]
+          }
+        ]
+      },
+      "strategy_graph": {
+        "parallel_execution_allowed": true,
+        "nodes": [
+          {
+            "tool": "Burp Suite Professional",
+            "branches": [
+              {
+                "condition": "success",
+                "next_nodes": [
+                  "Match & Replace + Autorize"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "condition": "failure",
+                "next_nodes": [
+                  "Caido Manual Replay",
+                  "Custom Parameter Fuzzer"
+                ],
+                "execution": "parallel"
+              }
+            ]
+          }
+        ]
+      },
+      "recommended_tools": [
+        {
+          "tool_name": "Burp Suite Professional",
+          "category": "Proxy / Repeater",
+          "module_plugin": "Match & Replace + Autorize",
+          "use_when": [
+            {
+              "rule": {
+                "field": "role_comparison_needed",
+                "operator": "==",
+                "value": true
+              },
+              "weight": 0.25
+            },
+            {
+              "rule": {
+                "field": "endpoints_count",
+                "operator": ">",
+                "value": 10
+              },
+              "weight": 0.15
+            }
+          ],
+          "base_score": 0.60,
+          "decision_reasoning": "Best for visual comparison of authorized vs unauthorized requests across multiple roles.",
+          "action": "Compare cookies between two sessions and identify unauthorized access",
+          "difficulty": "Beginner",
+          "automation_level": "Semi-Automated",
+          "success_count": 0,
+          "failure_count": 0
+        },
+        {
+          "tool_name": "Caido",
+          "category": "Proxy",
+          "module_plugin": "Replay + Filters",
+          "use_when": [
+            {
+              "rule": {
+                "field": "resource_constrained",
+                "operator": "==",
+                "value": true
+              },
+              "weight": 0.30
+            },
+            {
+              "rule": {
+                "field": "testing_style",
+                "operator": "==",
+                "value": "manual_iterative"
+              },
+              "weight": 0.15
+            }
+          ],
+          "base_score": 0.50,
+          "decision_reasoning": "Faster for quick iterative testing and replay on low-resource machines.",
+          "action": "Replay requests with different user contexts",
+          "difficulty": "Beginner",
+          "automation_level": "Manual",
+          "success_count": 0,
+          "failure_count": 0
+        }
+      ],
+      "alternative_tools": [
+        "OWASP ZAP",
+        "Firefox Developer Tools",
+        "Postman",
+        "PortSwigger Web Security Academy"
+      ],
+      "pro_tips": [
+        "Look for numeric IDs in URLs and parameters",
+        "Test with GUIDs vs Sequential IDs",
+        "Check API versioning endpoints",
+        "Recreate the access-control flow in PortSwigger labs before testing the target"
+      ]
+    },
+    {
+      "cwe_id": "CWE-362",
+      "vulnerability_type": "Race Condition",
+      "adaptive_plan": {
+        "initial_steps": [
+          "Identify a state-changing endpoint (e.g., checkout, transfer)",
+          "Use Burp to verify baseline normal execution"
+        ],
+        "if_success": [
+          "Load Turbo Intruder with a single-packet attack script",
+          "Send 50+ concurrent requests and monitor state anomaly"
+        ],
+        "if_failure": [
+          "Test multi-step race conditions across different endpoints",
+          "Verify if server rate-limiting is blocking parallel requests"
+        ],
+        "if_signal_detected": [
+          {
+            "signal": "latency_spike",
+            "next_steps": [
+              "Increase connection pool and retry single-packet attack to catch the open window"
+            ]
+          }
+        ]
+      },
+      "strategy_graph": {
+        "parallel_execution_allowed": false,
+        "nodes": [
+          {
+            "tool": "Burp Suite Professional (Mapping)",
+            "branches": [
+              {
+                "condition": "success",
+                "next_nodes": [
+                  "Turbo Intruder (Exploit)"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "condition": "failure",
+                "next_nodes": [
+                  "Custom Python asyncio scripts"
+                ],
+                "execution": "sequential"
+              }
+            ]
+          }
+        ]
+      },
+      "recommended_tools": [
+        {
+          "tool_name": "Turbo Intruder",
+          "category": "HTTP Attack Engine",
+          "module_plugin": "Python Scripting Engine",
+          "use_when": [
+            {
+              "rule": {
+                "field": "concurrency_level",
+                "operator": ">",
+                "value": 50
+              },
+              "weight": 0.20
+            },
+            {
+              "rule": {
+                "field": "race_window_ms",
+                "operator": "<",
+                "value": 5
+              },
+              "weight": 0.30
+            }
+          ],
+          "base_score": 0.48,
+          "decision_reasoning": "Unmatched speed and precision for exploiting tight race windows using single-packet attacks.",
+          "action": "Send 100+ requests in single packet attack",
+          "difficulty": "Advanced",
+          "automation_level": "Fully Automated",
+          "success_count": 0,
+          "failure_count": 0
+        },
+        {
+          "tool_name": "Burp Suite Professional",
+          "category": "Intruder",
+          "module_plugin": "Pitchfork Attack",
+          "use_when": [
+            {
+              "rule": {
+                "field": "concurrency_level",
+                "operator": "<=",
+                "value": 50
+              },
+              "weight": 0.25
+            },
+            {
+              "rule": {
+                "field": "scripting_capability",
+                "operator": "==",
+                "value": false
+              },
+              "weight": 0.20
+            }
+          ],
+          "base_score": 0.50,
+          "decision_reasoning": "Good for basic testing but lacks the precision of a single-packet attack.",
+          "action": "Parallel request execution with null payloads",
+          "difficulty": "Intermediate",
+          "automation_level": "Semi-Automated",
+          "success_count": 0,
+          "failure_count": 0
+        }
+      ],
+      "alternative_tools": [
+        "Racepwn",
+        "Custom Python Scripts",
+        "ffuf"
+      ],
+      "pro_tips": [
+        "Target state-changing operations",
+        "Use single-packet attack for maximum precision",
+        "Look for coupon redemption, balance transfers, vote counting"
+      ]
+    },
+    {
+      "cwe_id": "CWE-840",
+      "vulnerability_type": "Business Logic Error / Workflow Bypass",
+      "adaptive_plan": {
+        "initial_steps": [
+          "Map the complete intended workflow in Proxy history",
+          "Identify critical state validation parameters (e.g., 'step=2')"
+        ],
+        "if_success": [
+          "Use Repeater to drop, duplicate, or reorder the workflow steps",
+          "Analyze if backend processes action without prerequisite steps"
+        ],
+        "if_failure": [
+          "Check for client-side enforcement and bypass in UI",
+          "Test negative values and logic bounds"
+        ],
+        "if_signal_detected": [
+          {
+            "signal": "unexpected_state",
+            "next_steps": [
+              "Isolate the bypassed parameter and fuzz its values to force logic collapse"
+            ]
+          }
+        ]
+      },
+      "strategy_graph": {
+        "parallel_execution_allowed": true,
+        "nodes": [
+          {
+            "tool": "Burp Suite Professional",
+            "branches": [
+              {
+                "condition": "success",
+                "next_nodes": [
+                  "Caido Automate"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "condition": "failure",
+                "next_nodes": [
+                  "Browser DevTools Manual Flow"
+                ],
+                "execution": "sequential"
+              }
+            ]
+          }
+        ]
+      },
+      "recommended_tools": [
+        {
+          "tool_name": "Burp Suite Professional",
+          "category": "Proxy / Repeater",
+          "module_plugin": "Repeater + Comparer",
+          "use_when": [
+            {
+              "rule": {
+                "field": "state_complexity",
+                "operator": "==",
+                "value": "high"
+              },
+              "weight": 0.25
+            },
+            {
+              "rule": {
+                "field": "testing_style",
+                "operator": "==",
+                "value": "step_by_step"
+              },
+              "weight": 0.20
+            }
+          ],
+          "base_score": 0.50,
+          "decision_reasoning": "Allows precise manual manipulation of each step to observe state changes.",
+          "action": "Step through multi-step flows and modify intermediate requests",
+          "difficulty": "Intermediate",
+          "automation_level": "Manual",
+          "success_count": 0,
+          "failure_count": 0
+        },
+        {
+          "tool_name": "Caido",
+          "category": "Proxy",
+          "module_plugin": "Automate + Replay",
+          "use_when": [
+            {
+              "rule": {
+                "field": "workflow_steps",
+                "operator": ">",
+                "value": 3
+              },
+              "weight": 0.20
+            },
+            {
+              "rule": {
+                "field": "automation_preference",
+                "operator": "==",
+                "value": "high"
+              },
+              "weight": 0.25
+            }
+          ],
+          "base_score": 0.45,
+          "decision_reasoning": "Streamlines testing of multi-step processes with its automate features.",
+          "action": "Automate multi-step workflow testing",
+          "difficulty": "Intermediate",
+          "automation_level": "Semi-Automated",
+          "success_count": 0,
+          "failure_count": 0
+        }
+      ],
+      "alternative_tools": [
+        "OWASP ZAP",
+        "Browser DevTools",
+        "Selenium",
+        "OWASP Testing Guide"
+      ],
+      "pro_tips": [
+        "Map the entire workflow before testing",
+        "Check for missing validation between steps",
+        "Test negative values, zero, and extreme values",
+        "Use the OWASP Testing Guide as the baseline for sequence validation"
+      ]
+    },
+    {
+      "cwe_id": "CWE-841",
+      "vulnerability_type": "Improper Enforcement of Behavioral Workflow",
+      "adaptive_plan": {
+        "initial_steps": [
+          "Identify sequence-dependent endpoints",
+          "Configure Session Handling Rules to automate prerequisite states"
+        ],
+        "if_success": [
+          "Fuzz the final endpoint bypassing intermediate states",
+          "Monitor for unauthorized state transitions"
+        ],
+        "if_failure": [
+          "Debug macro login states to ensure valid session tokens",
+          "Check CSRF token synchronization"
+        ],
+        "if_signal_detected": [
+          {
+            "signal": "unexpected_state",
+            "next_steps": [
+              "Verify session invalidation on step skip. Proceed to final action payload."
+            ]
+          }
+        ]
+      },
+      "strategy_graph": {
+        "parallel_execution_allowed": true,
+        "nodes": [
+          {
+            "tool": "Burp Suite Professional",
+            "branches": [
+              {
+                "condition": "success",
+                "next_nodes": [
+                  "Session Handling Rules"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "condition": "failure",
+                "next_nodes": [
+                  "Custom Python Workflow Scripts"
+                ],
+                "execution": "sequential"
+              }
+            ]
+          }
+        ]
+      },
+      "recommended_tools": [
+        {
+          "tool_name": "Burp Suite Professional",
+          "category": "Proxy / Sequencer",
+          "module_plugin": "Session Handling Rules",
+          "use_when": [
+            {
+              "rule": {
+                "field": "requires_macro",
+                "operator": "==",
+                "value": true
+              },
+              "weight": 0.30
+            },
+            {
+              "rule": {
+                "field": "strict_sequence",
+                "operator": "==",
+                "value": true
+              },
+              "weight": 0.25
+            }
+          ],
+          "base_score": 0.40,
+          "decision_reasoning": "Session handling rules are essential to automatically reach the required state before sending the exploit payload.",
+          "action": "Test session state transitions and step skipping",
+          "difficulty": "Advanced",
+          "automation_level": "Semi-Automated",
+          "success_count": 0,
+          "failure_count": 0
+        }
+      ],
+      "alternative_tools": [
+        "OWASP ZAP",
+        "Custom Scripts",
+        "PortSwigger Web Security Academy"
+      ],
+      "pro_tips": [
+        "Skip intermediate steps in multi-step processes",
+        "Test direct access to 'success' pages",
+        "Check state machine validation",
+        "Mirror the flow in PortSwigger labs before reproducing it on the target"
+      ]
+    },
+    {
+      "cwe_id": "CWE-837",
+      "vulnerability_type": "Improper Enforcement of a Single Unique Action",
+      "adaptive_plan": {
+        "initial_steps": [
+          "Locate action endpoints intended for single use (e.g., apply_discount)",
+          "Intercept the request"
+        ],
+        "if_success": [
+          "Use Turbo Intruder or Cluster Bomb to send payload concurrently",
+          "Check if action was applied multiple times to account"
+        ],
+        "if_failure": [
+          "Evaluate if application tokenizes unique actions server-side",
+          "Test action reuse across multi-tab sessions"
+        ],
+        "if_signal_detected": [
+          {
+            "signal": "duplicate_transaction",
+            "next_steps": [
+              "Extract duplicate transaction IDs for Proof of Concept generation"
+            ]
+          }
+        ]
+      },
+      "strategy_graph": {
+        "parallel_execution_allowed": true,
+        "nodes": [
+          {
+            "tool": "Burp Suite Professional (Cluster Bomb)",
+            "branches": [
+              {
+                "condition": "success",
+                "next_nodes": [
+                  "Turbo Intruder (Scale)"
+                ],
+                "execution": "sequential"
+              },
+              {
+                "condition": "failure",
+                "next_nodes": [
+                  "curl + parallel (Network level)"
+                ],
+                "execution": "parallel"
+              }
+            ]
+          }
+        ]
+      },
+      "recommended_tools": [
+        {
+          "tool_name": "Turbo Intruder",
+          "category": "HTTP Attack Engine",
+          "module_plugin": "Python Scripting",
+          "use_when": [
+            {
+              "rule": {
+                "field": "action_type",
+                "operator": "==",
+                "value": "once_only"
+              },
+              "weight": 0.25
+            },
+            {
+              "rule": {
+                "field": "concurrency_level",
+                "operator": ">",
+                "value": 20
+              },
+              "weight": 0.20
+            }
+          ],
+          "base_score": 0.55,
+          "decision_reasoning": "Maximizes the chance of processing duplicate requests before the database locks the record.",
+          "action": "Rapid duplicate request submission",
+          "difficulty": "Advanced",
+          "automation_level": "Fully Automated",
+          "success_count": 0,
+          "failure_count": 0
+        },
+        {
+          "tool_name": "Burp Suite Professional",
+          "category": "Intruder",
+          "module_plugin": "Cluster Bomb",
+          "use_when": [
+            {
+              "rule": {
+                "field": "payload_variation_needed",
+                "operator": "==",
+                "value": true
+              },
+              "weight": 0.25
+            },
+            {
+              "rule": {
+                "field": "concurrency_level",
+                "operator": "<=",
+                "value": 20
+              },
+              "weight": 0.15
+            }
+          ],
+          "base_score": 0.50,
+          "decision_reasoning": "Useful for generating varying simultaneous requests, though slower than Turbo Intruder.",
+          "action": "Multiple simultaneous request execution",
+          "difficulty": "Intermediate",
+          "automation_level": "Semi-Automated",
+          "success_count": 0,
+          "failure_count": 0
+        }
+      ],
+      "alternative_tools": [
+        "Custom Python Scripts",
+        "curl + parallel"
+      ],
+      "pro_tips": [
+        "Target coupon redemption and referral bonuses",
+        "Test vote manipulation systems",
+        "Check for duplicate transaction processing"
+      ]
+    }
+  ]
+}

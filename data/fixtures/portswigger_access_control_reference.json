@@ -1,0 +1,60 @@
+{
+  "source": {
+    "source_id": "portswigger_access_control_reference",
+    "source_type": "portswigger",
+    "title": "Access control vulnerabilities and privilege escalation",
+    "uri": "https://portswigger.net/web-security/access-control",
+    "license": "Free educational content",
+    "metadata": {
+      "topic": "access-control",
+      "origin": "public-reference"
+    }
+  },
+  "case": {
+    "pattern_id": "LOGIC-ACCESS-001",
+    "title": "Broken access control enables horizontal and vertical privilege escalation",
+    "focus": "Access Control",
+    "summary": "PortSwigger explains how horizontal access control failures, IDOR, and multi-step process gaps allow users to reach resources or actions they should not access.",
+    "source_ids": ["portswigger_access_control_reference"],
+    "cwe_ids": ["CWE-639", "CWE-841"],
+    "keywords": ["access control", "privilege escalation", "idor", "multi-step process"],
+    "signals": [
+      {
+        "name": "unauthorized_object_access",
+        "value": true,
+        "confidence": 0.94,
+        "description": "The page highlights object-level access control failures and privilege escalation paths"
+      }
+    ],
+    "workflow_steps": [
+      {
+        "step_id": "step-1",
+        "order": 0,
+        "title": "Review access-control models and examples",
+        "state_before": "baseline-review",
+        "state_after": "attack-surface-mapped",
+        "notes": "Focus on vertical, horizontal, and context-dependent access controls",
+        "metadata": {
+          "section": "What is access control?"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "ev-1",
+        "summary": "The Web Security Academy page documents horizontal privilege escalation and IDOR as access-control examples",
+        "source_id": "portswigger_access_control_reference",
+        "evidence_type": "reference",
+        "metadata": {
+          "section": "Examples of broken access controls"
+        }
+      }
+    ],
+    "status": "validated",
+    "confidence": 0.93,
+    "metadata": {
+      "origin": "public-reference",
+      "notes": "Derived from the PortSwigger access-control guidance page"
+    }
+  }
+}

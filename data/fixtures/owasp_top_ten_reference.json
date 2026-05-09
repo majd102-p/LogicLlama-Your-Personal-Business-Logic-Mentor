@@ -1,0 +1,60 @@
+{
+  "source": {
+    "source_id": "owasp_top_ten_reference",
+    "source_type": "owasp",
+    "title": "OWASP Top Ten Web Application Security Risks",
+    "uri": "https://owasp.org/www-project-top-ten/",
+    "license": "Creative Commons Attribution-ShareAlike 4.0",
+    "metadata": {
+      "topic": "top-ten-overview",
+      "origin": "public-reference"
+    }
+  },
+  "case": {
+    "pattern_id": "LOGIC-OWASP-001",
+    "title": "OWASP Top Ten provides a baseline for security risk review",
+    "focus": "Reference Framework",
+    "summary": "OWASP describes the Top 10 as a standard awareness document for developers and web application security, with broken access control as one of the core risk areas.",
+    "source_ids": ["owasp_top_ten_reference"],
+    "cwe_ids": ["CWE-284"],
+    "keywords": ["owasp top ten", "security risks", "broken access control", "awareness document"],
+    "signals": [
+      {
+        "name": "baseline_risk_framework",
+        "value": true,
+        "confidence": 0.92,
+        "description": "The page establishes the OWASP Top Ten as a reference baseline for web application security review"
+      }
+    ],
+    "workflow_steps": [
+      {
+        "step_id": "step-1",
+        "order": 0,
+        "title": "Review the OWASP Top Ten guidance",
+        "state_before": "security-review",
+        "state_after": "risk-baselined",
+        "notes": "Use the Top Ten as a starting point for access-control and logic-flaw review",
+        "metadata": {
+          "section": "Project Information"
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "evidence_id": "ev-1",
+        "summary": "OWASP positions the Top Ten as a standard awareness document for developers and web application security",
+        "source_id": "owasp_top_ten_reference",
+        "evidence_type": "reference",
+        "metadata": {
+          "section": "Overview"
+        }
+      }
+    ],
+    "status": "validated",
+    "confidence": 0.9,
+    "metadata": {
+      "origin": "public-reference",
+      "notes": "Derived from the OWASP Top Ten public project page"
+    }
+  }
+}

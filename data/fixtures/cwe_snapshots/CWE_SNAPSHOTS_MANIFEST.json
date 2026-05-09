@@ -1,0 +1,78 @@
+{
+  "archive_date": "2026-05-03T19:12:33.306909",
+  "source": "MITRE CWE",
+  "snapshots": [
+    {
+      "version": "4.9",
+      "filename": "cwec_v4.9.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.9.xml.zip",
+      "date": "2023-01-31",
+      "description": "CWE v4.9 release",
+      "size_bytes": 1439042,
+      "archived": true
+    },
+    {
+      "version": "4.20",
+      "filename": "cwec_v4.20.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.20.xml.zip",
+      "date": "2024-12-15",
+      "description": "Latest stable release (v4.20)",
+      "size_bytes": 2021351,
+      "archived": true
+    },
+    {
+      "version": "4.19",
+      "filename": "cwec_v4.19.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.19.xml.zip",
+      "date": "2024-06-15",
+      "description": "Previous stable release (v4.19)",
+      "size_bytes": 1883899,
+      "archived": true
+    },
+    {
+      "version": "4.14",
+      "filename": "cwec_v4.14.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.14.xml.zip",
+      "date": "2024-01-30",
+      "description": "CWE v4.14 release",
+      "size_bytes": 1720673,
+      "archived": true
+    },
+    {
+      "version": "4.13",
+      "filename": "cwec_v4.13.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.13.xml.zip",
+      "date": "2023-12-22",
+      "description": "CWE v4.13 release",
+      "size_bytes": 1649163,
+      "archived": true
+    },
+    {
+      "version": "4.12",
+      "filename": "cwec_v4.12.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.12.xml.zip",
+      "date": "2023-10-26",
+      "description": "CWE v4.12 release",
+      "size_bytes": 1605112,
+      "archived": true
+    },
+    {
+      "version": "4.11",
+      "filename": "cwec_v4.11.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.11.xml.zip",
+      "date": "2023-06-29",
+      "description": "CWE v4.11 release",
+      "size_bytes": 1545087,
+      "archived": true
+    },
+    {
+      "version": "4.10",
+      "filename": "cwec_v4.10.xml.zip",
+      "url": "https://cwe.mitre.org/data/xml/cwec_v4.10.xml.zip",
+      "date": "2023-04-06",
+      "description": "CWE v4.10 release",
+      "size_bytes": 1474716,
+      "archived": true
+    }
+  ]
+}

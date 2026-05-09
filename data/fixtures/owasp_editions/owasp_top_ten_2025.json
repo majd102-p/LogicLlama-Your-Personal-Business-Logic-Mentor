@@ -1,0 +1,149 @@
+{
+  "source": "OWASP Top 10 \u2013 2025",
+  "version": "2025",
+  "release_date": "2025-01-01",
+  "categories": [
+    {
+      "rank": 1,
+      "name": "Broken Access Control",
+      "cwe_ids": [
+        "CWE-639",
+        "CWE-276",
+        "CWE-284"
+      ],
+      "previous_rank": 1,
+      "risk_factors": [
+        "User roles and permissions",
+        "API access controls",
+        "Authentication bypass"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Cryptographic Failures",
+      "cwe_ids": [
+        "CWE-327",
+        "CWE-328",
+        "CWE-326"
+      ],
+      "previous_rank": 2,
+      "risk_factors": [
+        "Weak encryption",
+        "Data exposure",
+        "Poor key management"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Injection",
+      "cwe_ids": [
+        "CWE-89",
+        "CWE-94",
+        "CWE-643"
+      ],
+      "previous_rank": 3,
+      "risk_factors": [
+        "SQL injection",
+        "Command injection",
+        "LDAP injection"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "Insecure Design",
+      "cwe_ids": [
+        "CWE-1025",
+        "CWE-863"
+      ],
+      "previous_rank": 4,
+      "risk_factors": [
+        "Missing security requirements",
+        "Flawed threat modeling",
+        "Insecure business logic"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Security Misconfiguration",
+      "cwe_ids": [
+        "CWE-16",
+        "CWE-693"
+      ],
+      "previous_rank": 5,
+      "risk_factors": [
+        "Debug enabled",
+        "Unnecessary services",
+        "Default credentials"
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "Vulnerable and Outdated Components",
+      "cwe_ids": [
+        "CWE-1035",
+        "CWE-937"
+      ],
+      "previous_rank": 6,
+      "risk_factors": [
+        "Unpatched libraries",
+        "Known CVEs",
+        "End-of-life dependencies"
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Authentication Failures",
+      "cwe_ids": [
+        "CWE-287",
+        "CWE-307"
+      ],
+      "previous_rank": 7,
+      "risk_factors": [
+        "Weak passwords",
+        "Session fixation",
+        "Credential stuffing"
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Software and Data Integrity Failures",
+      "cwe_ids": [
+        "CWE-434",
+        "CWE-829"
+      ],
+      "previous_rank": 8,
+      "risk_factors": [
+        "Malicious updates",
+        "Unsigned artifacts",
+        "Unsafe deserialization"
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "Logging and Monitoring Failures",
+      "cwe_ids": [
+        "CWE-778",
+        "CWE-388"
+      ],
+      "previous_rank": 9,
+      "risk_factors": [
+        "Missing logging",
+        "Ineffective monitoring",
+        "Log tampering"
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Server-Side Request Forgery (SSRF)",
+      "cwe_ids": [
+        "CWE-918"
+      ],
+      "previous_rank": 10,
+      "risk_factors": [
+        "Unvalidated URLs",
+        "Internal network access",
+        "Metadata service abuse"
+      ]
+    }
+  ]
+}

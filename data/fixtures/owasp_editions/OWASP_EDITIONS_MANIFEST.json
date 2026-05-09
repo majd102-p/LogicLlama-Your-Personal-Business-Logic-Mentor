@@ -1,0 +1,66 @@
+{
+  "archive_date": "2026-05-03T19:12:42.108164",
+  "source": "OWASP Top Ten Editions",
+  "editions": [
+    {
+      "edition": "2025",
+      "filename": "owasp_top_ten_2025.json",
+      "title": "OWASP Top 10 \u2013 2025",
+      "url": "https://owasp.org/Top10/",
+      "date": "2025-01-01",
+      "description": "Latest OWASP Top 10 - 2025 release",
+      "size_bytes": 3167,
+      "archived": true
+    },
+    {
+      "edition": "2021",
+      "filename": "owasp_top_ten_2021.json",
+      "title": "OWASP Top 10 \u2013 2021",
+      "url": "https://owasp.org/Top10/",
+      "date": "2021-09-24",
+      "description": "OWASP Top 10 - 2021 release",
+      "size_bytes": 1393,
+      "archived": true
+    },
+    {
+      "edition": "2017",
+      "filename": "owasp_top_ten_2017.json",
+      "title": "OWASP Top 10 \u2013 2017",
+      "url": "https://owasp.org/www-project-top-ten-2017/",
+      "date": "2017-07-01",
+      "description": "OWASP Top 10 - 2017 release",
+      "size_bytes": 1374,
+      "archived": true
+    },
+    {
+      "edition": "2013",
+      "filename": "owasp_top_ten_2013.json",
+      "title": "OWASP Top 10 \u2013 2013",
+      "url": "https://owasp.org/www-project-top-ten-2013/",
+      "date": "2013-06-01",
+      "description": "OWASP Top 10 - 2013 release",
+      "size_bytes": 317,
+      "archived": true
+    },
+    {
+      "edition": "2010",
+      "filename": "owasp_top_ten_2010.json",
+      "title": "OWASP Top 10 \u2013 2010",
+      "url": "https://owasp.org/www-project-top-ten-2010/",
+      "date": "2010-05-01",
+      "description": "OWASP Top 10 - 2010 release",
+      "size_bytes": 317,
+      "archived": true
+    },
+    {
+      "edition": "2007",
+      "filename": "owasp_top_ten_2007.json",
+      "title": "OWASP Top 10 \u2013 2007",
+      "url": "https://owasp.org/www-community/attacks/",
+      "date": "2007-05-01",
+      "description": "OWASP Top 10 - 2007 release (foundational)",
+      "size_bytes": 329,
+      "archived": true
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "source": "OWASP Top 10 \u2013 2017",
+  "version": "2017",
+  "release_date": "2017-07-01",
+  "categories": [
+    {
+      "rank": 1,
+      "name": "Injection",
+      "cwe_ids": [
+        "CWE-89"
+      ]
+    },
+    {
+      "rank": 2,
+      "name": "Broken Authentication",
+      "cwe_ids": [
+        "CWE-287"
+      ]
+    },
+    {
+      "rank": 3,
+      "name": "Sensitive Data Exposure",
+      "cwe_ids": [
+        "CWE-327"
+      ]
+    },
+    {
+      "rank": 4,
+      "name": "XML External Entities (XXE)",
+      "cwe_ids": [
+        "CWE-611"
+      ]
+    },
+    {
+      "rank": 5,
+      "name": "Broken Access Control",
+      "cwe_ids": [
+        "CWE-639"
+      ]
+    },
+    {
+      "rank": 6,
+      "name": "Security Misconfiguration",
+      "cwe_ids": [
+        "CWE-16"
+      ]
+    },
+    {
+      "rank": 7,
+      "name": "Cross-Site Scripting (XSS)",
+      "cwe_ids": [
+        "CWE-79"
+      ]
+    },
+    {
+      "rank": 8,
+      "name": "Insecure Deserialization",
+      "cwe_ids": [
+        "CWE-502"
+      ]
+    },
+    {
+      "rank": 9,
+      "name": "Using Components with Known Vulnerabilities",
+      "cwe_ids": [
+        "CWE-1035"
+      ]
+    },
+    {
+      "rank": 10,
+      "name": "Insufficient Logging & Monitoring",
+      "cwe_ids": [
+        "CWE-778"
+      ]
+    }
+  ]
+}
