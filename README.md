@@ -27,6 +27,131 @@ LogicLlama models applications as:
 
 ---
 
+## UML & Relationship Model
+
+This section documents the core relationships in a compact UML-style format so contributors can quickly understand how the system fits together.
+
+### Component Diagram
+
+```mermaid
+flowchart TB
+    User[User / Analyst] --> UI[Streamlit UI]
+    User --> CLI[CLI Commands]
+    User --> API[FastAPI Layer]
+
+    UI --> Orchestrator[Reasoning Orchestrator]
+    CLI --> Orchestrator
+    API --> Orchestrator
+
+    Orchestrator --> Ingestion[Ingestion Pipeline]
+    Orchestrator --> Storage[SQLite Storage]
+    Orchestrator --> Graph[Graph Builder]
+    Orchestrator --> Persist[Neo4j Persistence]
+    Orchestrator --> RAG[RAG Search]
+
+    Ingestion --> Adapters[Public Source Adapters]
+    Adapters --> Sources[NVD / CWE / KEV / OWASP / PortSwigger]
+    Graph --> Cases[Logic Cases]
+    Persist --> Neo4j[(Neo4j)]
+    Storage --> SQLite[(SQLite)]
+    RAG --> Vector[(ChromaDB)]
+```
+
+### Class Relationship View
+
+```mermaid
+classDiagram
+    class LogicCase {
+        +case_id
+        +cve_id
+        +title
+        +description
+        +severity
+        +published_date
+    }
+
+    class LogicSource {
+        +source_id
+        +name
+        +url
+        +last_updated
+        +case_count
+    }
+
+    class QueryFilter {
+        +source
+        +severity_min
+        +date_from
+        +date_to
+        +keywords
+        +cwe_ids
+    }
+
+    class StorageManager {
+        +save_case()
+        +get_case()
+        +query_cases()
+        +get_statistics()
+    }
+
+    class GraphBuilder {
+        +build_graph()
+        +compute_similarity()
+        +link_cases()
+    }
+
+    class Neo4jGraphStore {
+        +persist_graph()
+        +query_cypher()
+        +get_neighbors()
+    }
+
+    class LogicIngestionPipeline {
+        +run()
+        +normalize_sources()
+        +validate_records()
+    }
+
+    LogicSource "1" --> "many" LogicCase : provides
+    QueryFilter ..> LogicCase : filters
+    LogicIngestionPipeline ..> LogicSource : consumes
+    LogicIngestionPipeline ..> StorageManager : loads
+    StorageManager ..> LogicCase : stores
+    GraphBuilder ..> LogicCase : analyzes
+    GraphBuilder ..> Neo4jGraphStore : exports
+    Neo4jGraphStore ..> LogicCase : persists
+```
+
+### Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as UI / CLI
+    participant Pipeline as Ingestion Pipeline
+    participant Store as SQLite Storage
+    participant Builder as Graph Builder
+    participant Graph as Neo4j Store
+
+    User->>UI: Request analysis or ingest data
+    UI->>Pipeline: Load and normalize sources
+    Pipeline->>Store: Save validated cases
+    Store-->>Pipeline: Confirmation
+    UI->>Builder: Build or refresh relationships
+    Builder->>Store: Read normalized cases
+    Builder->>Graph: Persist similarity edges
+    Graph-->>UI: Graph ready for querying
+```
+
+### Why this matters
+
+- The ingestion layer owns the flow from public sources into normalized cases.
+- The storage layer persists canonical records and keeps the system reproducible.
+- The graph layer derives relationships and makes cross-case reasoning possible.
+- The UI, CLI, and API are thin entry points that should not own domain logic.
+
+---
+
 ## Key Features
 
 ✅ **21,995+ Curated Security Cases**
@@ -507,6 +632,3 @@ If you use LogicLlama in your research or work, please cite:
 **Last Updated**: May 9, 2026  
 **Status**: Production Ready ✅  
 **Current Version**: 1.0.0
-
-
-LogicLlama is building toward that future.
