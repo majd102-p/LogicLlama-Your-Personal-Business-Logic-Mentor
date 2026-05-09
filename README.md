@@ -1,3 +1,53 @@
+# LogicLlama — Business Logic Vulnerability Reasoning Engine
+
+LogicLlama is a knowledge-first reasoning engine focused on business-logic vulnerabilities. It provides a canonical dataset, graph linkage, exporters, and developer tooling to build reasoning layers on top of high-quality vulnerability signals.
+
+Status: Stable data + graph platform (21,995 cases). AI reasoning features are under active development.
+
+Quick start
+
+1. Create and activate a Python 3.8+ virtual environment
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -U pip
+pip install -e .
+```
+
+2. Run the Streamlit UI (preview)
+
+```powershell
+streamlit run src/ui/app.py
+```
+
+3. Use the CLI (examples)
+
+```powershell
+logicllama --help
+logicllama report --format json
+logicllama export-training-corpus --format jsonl --limit 100
+```
+
+Repository layout (high level)
+
+- `src/` — Python source (core, ingestion, rag, ui)
+- `data/` — source snapshots and fixtures
+- `docs/` — technical docs; large reports archived in `docs/archive/`
+- `scripts/` — utility scripts and verification tools
+- `tests/` — unit and integration tests (52 passing)
+
+Contributing
+
+See [CONTRIBUTING_PROFESSIONAL.md](docs/CONTRIBUTING_PROFESSIONAL.md) for contribution guidelines and developer setup.
+
+License
+
+This repository is intended to be published under MIT (add `LICENSE` file before public release).
+
+Screenshots
+
+![Streamlit UI placeholder](docs/screenshots/streamlit_placeholder.png)
 # LogicLlama
 ## Autonomous Business Logic Intelligence & Reasoning Platform
 

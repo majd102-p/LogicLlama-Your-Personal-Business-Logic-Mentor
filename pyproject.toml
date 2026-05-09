@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "logicllama"
+version = "0.1.0"
+description = "LogicLlama — Offensive security reasoning engine for business-logic vulnerabilities"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "pydantic>=2.5.2",
+  "neo4j>=5.15.0",
+  "streamlit>=1.0",
+  "requests>=2.31.0",
+]
+
+[project.urls]
+homepage = "https://github.com/majd102-p/LogicLlama-Your-Personal-Business-Logic-Mentor"
+repository = "https://github.com/majd102-p/LogicLlama-Your-Personal-Business-Logic-Mentor"
+
+[project.scripts]
+logicllama = "src.core.cli:main"
+logicllama-cli = "src.core.cli:main"
+
+[tool.hatch.metadata]
+authors = [ { name = "LogicLlama Maintainers" } ]
