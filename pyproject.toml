@@ -25,3 +25,6 @@ logicllama-cli = "src.core.cli:main"
 
 [tool.hatch.metadata]
 authors = [ { name = "LogicLlama Maintainers" } ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src.core", "src.ingestion", "src.rag", "src.ui"]
