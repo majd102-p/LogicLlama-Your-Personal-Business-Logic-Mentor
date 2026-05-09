@@ -47,7 +47,7 @@ This repository is intended to be published under MIT (add `LICENSE` file before
 
 Screenshots
 
-![Streamlit UI placeholder](docs/screenshots/streamlit_placeholder.png)
+![Streamlit UI placeholder](docs/screenshots/streamlit_placeholder.svg)
 # LogicLlama
 ## Autonomous Business Logic Intelligence & Reasoning Platform
 
